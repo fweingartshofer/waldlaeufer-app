@@ -3,22 +3,32 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2245679E295DD0E500983556 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2245679D295DD0E500983556 /* FirebaseFirestore */; };
+		224567A0295DD0E500983556 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2245679F295DD0E500983556 /* FirebaseFirestoreSwift */; };
+		537240A0D84AC1C40ADDEADA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5372475A04EF129A1D6AFA85 /* GoogleService-Info.plist */; };
 		53724126042CEB9E8796C2CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53724505F1C17E04E86B6C53 /* Preview Assets.xcassets */; };
+		5372419021C027CFA3342A05 /* FirebaseLocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53724A10BC603E14CD270E8B /* FirebaseLocationRepository.swift */; };
+		53724389B67DB1420A7BF2D1 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537243ACBCD4D1642BBF0DC4 /* LocationData.swift */; };
 		537244367097A84C6F247ED1 /* waldlaeuferApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53724425FD730C4FF45A9725 /* waldlaeuferApp.swift */; };
 		537246AEB5887F81D9D3AA16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 537248F7EDD54600483B6440 /* Assets.xcassets */; };
 		53724A7A073465904DB41C05 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537245B166A54859BFFED539 /* ContentView.swift */; };
+		53724DEB0EA655A0B7439F99 /* LocationDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537245CDE78800D457DCB667 /* LocationDataRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		537241E5024F2579561EC697 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
+		537243ACBCD4D1642BBF0DC4 /* LocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		53724425FD730C4FF45A9725 /* waldlaeuferApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = waldlaeuferApp.swift; sourceTree = "<group>"; };
 		53724505F1C17E04E86B6C53 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		537245B166A54859BFFED539 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		537245CDE78800D457DCB667 /* LocationDataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationDataRepository.swift; path = GeoLocation/LocationDataRepository.swift; sourceTree = "<group>"; };
+		5372475A04EF129A1D6AFA85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		537248F7EDD54600483B6440 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		53724A10BC603E14CD270E8B /* FirebaseLocationRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseLocationRepository.swift; sourceTree = "<group>"; };
 		53724D8D5611B3EBDBB293E0 /* waldlaeufer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = waldlaeufer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -27,12 +37,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2245679E295DD0E500983556 /* FirebaseFirestore in Frameworks */,
+				224567A0295DD0E500983556 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		537242DD82127CA61AF1C66D /* firebase */ = {
+			isa = PBXGroup;
+			children = (
+				53724A10BC603E14CD270E8B /* FirebaseLocationRepository.swift */,
+			);
+			path = firebase;
+			sourceTree = "<group>";
+		};
+		537243472A7DA2D1B3AEF2A5 /* api-logic */ = {
+			isa = PBXGroup;
+			children = (
+				537245CDE78800D457DCB667 /* LocationDataRepository.swift */,
+				537243ACBCD4D1642BBF0DC4 /* LocationData.swift */,
+			);
+			path = "api-logic";
+			sourceTree = "<group>";
+		};
 		5372455D161FBCF4433EB97B /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -48,6 +77,9 @@
 				53724EE8811C11FBDBF03918 /* Preview Content */,
 				53724425FD730C4FF45A9725 /* waldlaeuferApp.swift */,
 				537245B166A54859BFFED539 /* ContentView.swift */,
+				537243472A7DA2D1B3AEF2A5 /* api-logic */,
+				537242DD82127CA61AF1C66D /* firebase */,
+				5372475A04EF129A1D6AFA85 /* GoogleService-Info.plist */,
 			);
 			path = waldlaeufer;
 			sourceTree = "<group>";
@@ -85,6 +117,10 @@
 			dependencies = (
 			);
 			name = waldlaeufer;
+			packageProductDependencies = (
+				2245679D295DD0E500983556 /* FirebaseFirestore */,
+				2245679F295DD0E500983556 /* FirebaseFirestoreSwift */,
+			);
 			productName = waldlaeufer;
 			productReference = 53724D8D5611B3EBDBB293E0 /* waldlaeufer.app */;
 			productType = "com.apple.product-type.application";
@@ -94,14 +130,21 @@
 /* Begin PBXProject section */
 		53724AC2BCC886381EADD08E /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1410;
+			};
 			buildConfigurationList = 537248D57B4D746ACC471074 /* Build configuration list for PBXProject "waldlaeufer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 53724A84A9343CB8082ED806;
+			packageReferences = (
+				2245679C295DD0E500983556 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 5372455D161FBCF4433EB97B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -118,6 +161,7 @@
 			files = (
 				537246AEB5887F81D9D3AA16 /* Assets.xcassets in Resources */,
 				53724126042CEB9E8796C2CE /* Preview Assets.xcassets in Resources */,
+				537240A0D84AC1C40ADDEADA /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +174,9 @@
 			files = (
 				537244367097A84C6F247ED1 /* waldlaeuferApp.swift in Sources */,
 				53724A7A073465904DB41C05 /* ContentView.swift in Sources */,
+				53724DEB0EA655A0B7439F99 /* LocationDataRepository.swift in Sources */,
+				53724389B67DB1420A7BF2D1 /* LocationData.swift in Sources */,
+				5372419021C027CFA3342A05 /* FirebaseLocationRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +187,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -210,7 +258,10 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = at.fhooe.waldlaeufer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -224,6 +275,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -288,7 +340,10 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = at.fhooe.waldlaeufer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -317,8 +372,33 @@
 				537245CF20BB2F81E9DE57B8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2245679C295DD0E500983556 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2245679D295DD0E500983556 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2245679C295DD0E500983556 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		2245679F295DD0E500983556 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2245679C295DD0E500983556 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 53724AC2BCC886381EADD08E /* Project object */;
 }
