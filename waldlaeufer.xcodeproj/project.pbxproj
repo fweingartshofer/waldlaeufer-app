@@ -15,8 +15,11 @@
 		53724389B67DB1420A7BF2D1 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537243ACBCD4D1642BBF0DC4 /* LocationData.swift */; };
 		537244367097A84C6F247ED1 /* waldlaeuferApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53724425FD730C4FF45A9725 /* waldlaeuferApp.swift */; };
 		537246AEB5887F81D9D3AA16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 537248F7EDD54600483B6440 /* Assets.xcassets */; };
-		53724A7A073465904DB41C05 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537245B166A54859BFFED539 /* ContentView.swift */; };
 		53724DEB0EA655A0B7439F99 /* LocationDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537245CDE78800D457DCB667 /* LocationDataRepository.swift */; };
+		56AF526FA341AB126709C00C /* HeatmapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF5889D521B680AFFDBAC4 /* HeatmapView.swift */; };
+		56AF5275093A044D8185AE8C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF539699D5A812026B98D6 /* ContentView.swift */; };
+		56AF533E9E2206D93C780793 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF55B0782F987DB020CE21 /* LocationManager.swift */; };
+		56AF540EEF076E2F6E6FF5E0 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF57D0C1B4EB33077E53F0 /* AddButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,12 +27,16 @@
 		537243ACBCD4D1642BBF0DC4 /* LocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		53724425FD730C4FF45A9725 /* waldlaeuferApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = waldlaeuferApp.swift; sourceTree = "<group>"; };
 		53724505F1C17E04E86B6C53 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		537245B166A54859BFFED539 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		537245CDE78800D457DCB667 /* LocationDataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationDataRepository.swift; path = GeoLocation/LocationDataRepository.swift; sourceTree = "<group>"; };
 		5372475A04EF129A1D6AFA85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		537248F7EDD54600483B6440 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		53724A10BC603E14CD270E8B /* FirebaseLocationRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseLocationRepository.swift; sourceTree = "<group>"; };
 		53724D8D5611B3EBDBB293E0 /* waldlaeufer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = waldlaeufer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		56AF539699D5A812026B98D6 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		56AF55B0782F987DB020CE21 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		56AF57D0C1B4EB33077E53F0 /* AddButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		56AF5889D521B680AFFDBAC4 /* HeatmapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatmapView.swift; sourceTree = "<group>"; };
+		80D9F64C295DFD8F00BB988F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,21 +52,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		537242DD82127CA61AF1C66D /* firebase */ = {
+		537242DD82127CA61AF1C66D /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
 				53724A10BC603E14CD270E8B /* FirebaseLocationRepository.swift */,
 			);
-			path = firebase;
+			path = Firebase;
 			sourceTree = "<group>";
 		};
-		537243472A7DA2D1B3AEF2A5 /* api-logic */ = {
+		537243472A7DA2D1B3AEF2A5 /* Api-Logic */ = {
 			isa = PBXGroup;
 			children = (
 				537245CDE78800D457DCB667 /* LocationDataRepository.swift */,
 				537243ACBCD4D1642BBF0DC4 /* LocationData.swift */,
 			);
-			path = "api-logic";
+			path = "Api-Logic";
 			sourceTree = "<group>";
 		};
 		5372455D161FBCF4433EB97B /* Products */ = {
@@ -73,13 +80,15 @@
 		5372457C6977D47A5BB9D6A9 /* waldlaeufer */ = {
 			isa = PBXGroup;
 			children = (
+				80D9F64C295DFD8F00BB988F /* Info.plist */,
 				537248F7EDD54600483B6440 /* Assets.xcassets */,
 				53724EE8811C11FBDBF03918 /* Preview Content */,
 				53724425FD730C4FF45A9725 /* waldlaeuferApp.swift */,
-				537245B166A54859BFFED539 /* ContentView.swift */,
-				537243472A7DA2D1B3AEF2A5 /* api-logic */,
-				537242DD82127CA61AF1C66D /* firebase */,
+				537243472A7DA2D1B3AEF2A5 /* Api-Logic */,
+				537242DD82127CA61AF1C66D /* Firebase */,
 				5372475A04EF129A1D6AFA85 /* GoogleService-Info.plist */,
+				56AF56B7F2C036C43CA4507F /* Views */,
+				56AF55B0782F987DB020CE21 /* LocationManager.swift */,
 			);
 			path = waldlaeufer;
 			sourceTree = "<group>";
@@ -99,6 +108,16 @@
 				53724505F1C17E04E86B6C53 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		56AF56B7F2C036C43CA4507F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				56AF5889D521B680AFFDBAC4 /* HeatmapView.swift */,
+				56AF539699D5A812026B98D6 /* ContentView.swift */,
+				56AF57D0C1B4EB33077E53F0 /* AddButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,10 +192,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				537244367097A84C6F247ED1 /* waldlaeuferApp.swift in Sources */,
-				53724A7A073465904DB41C05 /* ContentView.swift in Sources */,
 				53724DEB0EA655A0B7439F99 /* LocationDataRepository.swift in Sources */,
 				53724389B67DB1420A7BF2D1 /* LocationData.swift in Sources */,
 				5372419021C027CFA3342A05 /* FirebaseLocationRepository.swift in Sources */,
+				56AF526FA341AB126709C00C /* HeatmapView.swift in Sources */,
+				56AF5275093A044D8185AE8C /* ContentView.swift in Sources */,
+				56AF533E9E2206D93C780793 /* LocationManager.swift in Sources */,
+				56AF540EEF076E2F6E6FF5E0 /* AddButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +274,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"waldlaeufer/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = waldlaeufer/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need access to your location to provide you with information in your current location.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to your location to provide you with information in your current location.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -334,7 +360,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"waldlaeufer/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = waldlaeufer/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need access to your location to provide you with information in your current location.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to your location to provide you with information in your current location.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

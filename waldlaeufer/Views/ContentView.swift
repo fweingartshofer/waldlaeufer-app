@@ -9,14 +9,17 @@
 import SwiftUI
 
 struct ContentView: View {
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ZStack {
+            HeatmapView()
+                    .ignoresSafeArea(edges: .all)
+            VStack {
+                Spacer()
+                AddButton()
+                        .offset(y: -20)
+            }
         }
-        .padding()
     }
 }
 
