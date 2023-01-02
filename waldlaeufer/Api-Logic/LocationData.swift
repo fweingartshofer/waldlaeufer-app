@@ -6,11 +6,24 @@ import Foundation
 
 public typealias GeoLocation = (latitude: Double, longitude: Double)
 
-public enum SubjectiveWellbeing {
+public enum SubjectiveWellbeing: CaseIterable {
     case REALLY_GOOD
     case GOOD
     case BAD
     case REALLY_BAD
+
+    var description: String {
+        switch self {
+        case .GOOD:
+            return "Good"
+        case .BAD:
+            return "Bad"
+        case .REALLY_BAD:
+            return "Really Bad"
+        case .REALLY_GOOD:
+            return "Really Good"
+        }
+    }
 }
 
 public class LocationData {

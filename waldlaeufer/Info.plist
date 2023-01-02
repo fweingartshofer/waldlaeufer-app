@@ -13,5 +13,10 @@
 	<string>Location is necessary for the the heatmap.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Location is necessary for the the heatmap.</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
+	</array>
 </dict>
 </plist>

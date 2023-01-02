@@ -10,17 +10,13 @@ import SwiftUI
 
 struct AddButton: View {
     var body: some View {
-        Button(action: addLocationData) {
+        NavigationLink(destination: AddLocationDataView()) {
             Image(systemName: "plus")
                     .frame(width: 50, height: 50)
                     .foregroundColor(Color.white)
                     .background(Color.blue)
                     .clipShape(Circle())
         }.buttonStyle(PlainButtonStyle())
-    }
-
-    func addLocationData() {
-        print("-- add location data entry --")
     }
 }
 

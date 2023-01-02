@@ -9,15 +9,16 @@
 import SwiftUI
 
 struct ContentView: View {
-
     var body: some View {
-        ZStack {
-            HeatmapView()
-                    .ignoresSafeArea(edges: .all)
-            VStack {
-                Spacer()
-                AddButton()
-                        .offset(y: -20)
+        NavigationView {
+            ZStack {
+                HeatmapView()
+                        .ignoresSafeArea(edges: .all)
+                VStack {
+                    Spacer()
+                    AddButton()
+                            .padding()
+                }
             }
         }
     }

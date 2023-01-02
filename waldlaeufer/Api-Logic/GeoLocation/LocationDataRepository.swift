@@ -6,5 +6,5 @@ import Foundation
 
 public protocol LocationDataRepository {
     func findInArea(geoLocation: GeoLocation) -> Array<LocationData>;
-    func insert(geoLocation: GeoLocation);
+    func insert(locationData: LocationData);
 }

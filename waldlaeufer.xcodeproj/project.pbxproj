@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2245679E295DD0E500983556 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2245679D295DD0E500983556 /* FirebaseFirestore */; };
 		224567A0295DD0E500983556 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2245679F295DD0E500983556 /* FirebaseFirestoreSwift */; };
 		537240A0D84AC1C40ADDEADA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5372475A04EF129A1D6AFA85 /* GoogleService-Info.plist */; };
 		53724126042CEB9E8796C2CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53724505F1C17E04E86B6C53 /* Preview Assets.xcassets */; };
@@ -20,6 +19,8 @@
 		56AF5275093A044D8185AE8C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF539699D5A812026B98D6 /* ContentView.swift */; };
 		56AF533E9E2206D93C780793 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF55B0782F987DB020CE21 /* LocationManager.swift */; };
 		56AF540EEF076E2F6E6FF5E0 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF57D0C1B4EB33077E53F0 /* AddButton.swift */; };
+		56AF5ABC738BDC4559D068D3 /* AddLocationDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF5E13653AD33E31807F7C /* AddLocationDataView.swift */; };
+		56AF5D20227DE1817CA54BCF /* RepositoryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF5D3F3F4AEC8CAF1C0832 /* RepositoryFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,8 @@
 		56AF55B0782F987DB020CE21 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		56AF57D0C1B4EB33077E53F0 /* AddButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		56AF5889D521B680AFFDBAC4 /* HeatmapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatmapView.swift; sourceTree = "<group>"; };
+		56AF5D3F3F4AEC8CAF1C0832 /* RepositoryFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryFactory.swift; sourceTree = "<group>"; };
+		56AF5E13653AD33E31807F7C /* AddLocationDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationDataView.swift; sourceTree = "<group>"; };
 		80D9F64C295DFD8F00BB988F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -44,7 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2245679E295DD0E500983556 /* FirebaseFirestore in Frameworks */,
+				2245679E295DD0E500983556,
 				224567A0295DD0E500983556 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				53724A10BC603E14CD270E8B /* FirebaseLocationRepository.swift */,
+				56AF5D3F3F4AEC8CAF1C0832 /* RepositoryFactory.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -116,6 +120,7 @@
 				56AF5889D521B680AFFDBAC4 /* HeatmapView.swift */,
 				56AF539699D5A812026B98D6 /* ContentView.swift */,
 				56AF57D0C1B4EB33077E53F0 /* AddButton.swift */,
+				56AF5E13653AD33E31807F7C /* AddLocationDataView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -199,6 +204,8 @@
 				56AF5275093A044D8185AE8C /* ContentView.swift in Sources */,
 				56AF533E9E2206D93C780793 /* LocationManager.swift in Sources */,
 				56AF540EEF076E2F6E6FF5E0 /* AddButton.swift in Sources */,
+				56AF5ABC738BDC4559D068D3 /* AddLocationDataView.swift in Sources */,
+				56AF5D20227DE1817CA54BCF /* RepositoryFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

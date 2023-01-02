@@ -14,7 +14,7 @@ class FirebaseLocationRepository: LocationDataRepository {
         return Array()
     }
 
-    func insert(geoLocation: GeoLocation) {
+    func insert(locationData: LocationData) {
 
     }
     
