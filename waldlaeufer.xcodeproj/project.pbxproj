@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		224567A0295DD0E500983556 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2245679F295DD0E500983556 /* FirebaseFirestoreSwift */; };
+		22CEF895296312C3009AA1FC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2245679D295DD0E500983556 /* FirebaseFirestore */; };
+		22CEF898296313C7009AA1FC /* SwiftUIFlowLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 22CEF897296313C7009AA1FC /* SwiftUIFlowLayout */; };
 		537240A0D84AC1C40ADDEADA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5372475A04EF129A1D6AFA85 /* GoogleService-Info.plist */; };
 		53724126042CEB9E8796C2CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53724505F1C17E04E86B6C53 /* Preview Assets.xcassets */; };
 		5372419021C027CFA3342A05 /* FirebaseLocationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53724A10BC603E14CD270E8B /* FirebaseLocationRepository.swift */; };
 		53724389B67DB1420A7BF2D1 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537243ACBCD4D1642BBF0DC4 /* LocationData.swift */; };
 		537244367097A84C6F247ED1 /* waldlaeuferApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53724425FD730C4FF45A9725 /* waldlaeuferApp.swift */; };
 		537246AEB5887F81D9D3AA16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 537248F7EDD54600483B6440 /* Assets.xcassets */; };
+		53724D77518740E4C6BBBACA /* EditTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5372468FB6EA4A6928A91A5A /* EditTagView.swift */; };
 		53724DEB0EA655A0B7439F99 /* LocationDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537245CDE78800D457DCB667 /* LocationDataRepository.swift */; };
 		56AF526FA341AB126709C00C /* HeatmapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF5889D521B680AFFDBAC4 /* HeatmapView.swift */; };
 		56AF5275093A044D8185AE8C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF539699D5A812026B98D6 /* ContentView.swift */; };
@@ -29,6 +32,7 @@
 		53724425FD730C4FF45A9725 /* waldlaeuferApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = waldlaeuferApp.swift; sourceTree = "<group>"; };
 		53724505F1C17E04E86B6C53 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		537245CDE78800D457DCB667 /* LocationDataRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationDataRepository.swift; path = GeoLocation/LocationDataRepository.swift; sourceTree = "<group>"; };
+		5372468FB6EA4A6928A91A5A /* EditTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTagView.swift; sourceTree = "<group>"; };
 		5372475A04EF129A1D6AFA85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		537248F7EDD54600483B6440 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		53724A10BC603E14CD270E8B /* FirebaseLocationRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseLocationRepository.swift; sourceTree = "<group>"; };
@@ -47,8 +51,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2245679E295DD0E500983556,
+				22CEF895296312C3009AA1FC /* FirebaseFirestore in Frameworks */,
 				224567A0295DD0E500983556 /* FirebaseFirestoreSwift in Frameworks */,
+				22CEF898296313C7009AA1FC /* SwiftUIFlowLayout in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +126,7 @@
 				56AF539699D5A812026B98D6 /* ContentView.swift */,
 				56AF57D0C1B4EB33077E53F0 /* AddButton.swift */,
 				56AF5E13653AD33E31807F7C /* AddLocationDataView.swift */,
+				5372468FB6EA4A6928A91A5A /* EditTagView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -144,6 +150,7 @@
 			packageProductDependencies = (
 				2245679D295DD0E500983556 /* FirebaseFirestore */,
 				2245679F295DD0E500983556 /* FirebaseFirestoreSwift */,
+				22CEF897296313C7009AA1FC /* SwiftUIFlowLayout */,
 			);
 			productName = waldlaeufer;
 			productReference = 53724D8D5611B3EBDBB293E0 /* waldlaeufer.app */;
@@ -168,6 +175,7 @@
 			mainGroup = 53724A84A9343CB8082ED806;
 			packageReferences = (
 				2245679C295DD0E500983556 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				22CEF896296313C7009AA1FC /* XCRemoteSwiftPackageReference "swiftui-flow-layout" */,
 			);
 			productRefGroup = 5372455D161FBCF4433EB97B /* Products */;
 			projectDirPath = "";
@@ -206,6 +214,7 @@
 				56AF540EEF076E2F6E6FF5E0 /* AddButton.swift in Sources */,
 				56AF5ABC738BDC4559D068D3 /* AddLocationDataView.swift in Sources */,
 				56AF5D20227DE1817CA54BCF /* RepositoryFactory.swift in Sources */,
+				53724D77518740E4C6BBBACA /* EditTagView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +431,14 @@
 				kind = branch;
 			};
 		};
+		22CEF896296313C7009AA1FC /* XCRemoteSwiftPackageReference "swiftui-flow-layout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/globulus/swiftui-flow-layout";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -434,6 +451,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2245679C295DD0E500983556 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		22CEF897296313C7009AA1FC /* SwiftUIFlowLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22CEF896296313C7009AA1FC /* XCRemoteSwiftPackageReference "swiftui-flow-layout" */;
+			productName = SwiftUIFlowLayout;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

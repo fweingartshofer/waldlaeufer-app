@@ -9,14 +9,21 @@
 import SwiftUI
 
 struct AddButton: View {
+    @State private var showingSheet = false
     var body: some View {
-        NavigationLink(destination: AddLocationDataView()) {
+        Button {
+            showingSheet = !showingSheet
+        } label: {
             Image(systemName: "plus")
                     .frame(width: 50, height: 50)
                     .foregroundColor(Color.white)
                     .background(Color.blue)
                     .clipShape(Circle())
-        }.buttonStyle(PlainButtonStyle())
+        }
+        .buttonStyle(PlainButtonStyle())
+        .sheet(isPresented: $showingSheet) {
+            AddLocationDataView()
+        }
     }
 }
 

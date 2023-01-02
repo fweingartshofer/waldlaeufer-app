@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AddLocationDataView: View {
 
-    @State private var wellbeeing: SubjectiveWellbeing = .GOOD
+    @State private var wellbeing: SubjectiveWellbeing = .GOOD
     @State private var timestamp = Date.now
     @State private var useCustomLocation = false
     @State private var tagInput: String = ""
@@ -21,33 +21,30 @@ struct AddLocationDataView: View {
         NavigationView {
             VStack {
                 Form {
-                    Picker(selection: $wellbeeing, label: Text("Subjective Wellbeing")) {
+                    Picker(selection: $wellbeing, label: Text("Subjective Wellbeing")) {
                         ForEach(SubjectiveWellbeing.allCases, id: \.self) {
                             Text($0.description).tag($0)
                         }
                     }
-                    VStack {
-                        TextField("Tags", text: $tagInput)
-                    }
+                    EditTagView()
                     Toggle("Custom location", isOn: $useCustomLocation)
                     DatePicker("Date & Time", selection: $timestamp)
-                    HStack {
-                        Spacer()
-                        Button(action: save, label: { Text("Continue")})
-                                .buttonStyle(.bordered)
-                    }
                 }
                 Spacer()
             }
+            .navigationBarTitle("Add new entry")
+            .navigationBarItems(trailing: Button(action: {
+                saveAndClose()
+            }) {
+                Text("Done").bold()
+            })
         }
-                .navigationBarTitle("Add new entry")
     }
 
-    func save() {
-
+    func saveAndClose() {
         let newLocationData = LocationData(
                 timestamp: $timestamp.wrappedValue,
-                subjectiveWellbeing: $wellbeeing.wrappedValue,
+                subjectiveWellbeing: $wellbeing.wrappedValue,
                 geoLocation: GeoLocation(0, 0),
                 db: nil,
                 radius: nil,
