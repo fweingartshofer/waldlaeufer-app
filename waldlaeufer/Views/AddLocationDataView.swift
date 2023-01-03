@@ -45,14 +45,14 @@ struct AddLocationDataView: View {
         let newLocationData = LocationData(
                 timestamp: $timestamp.wrappedValue,
                 subjectiveWellbeing: $wellbeing.wrappedValue,
-                geoLocation: GeoLocation(0, 0),
+                geoLocation: GeoLocation(latitude: 0, longitude: 0),
                 db: nil,
                 radius: nil,
                 tags: $tags.wrappedValue
         )
 
-        RepositoryFactory.getFirebaseLocationRepository().insert(
-                locationData: newLocationData)
+//        RepositoryFactory.getFirebaseLocationRepository().insert(
+//                locationData: newLocationData)
         dismiss()
     }
 }
