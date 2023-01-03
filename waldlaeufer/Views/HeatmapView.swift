@@ -6,17 +6,23 @@
 //
 //
 
+import Logging
 import SwiftUI
 import MapKit
+import FirebaseFirestore
 
 struct HeatmapView: View {
 
+    let logger = Logger(label: "HeatmapView")
+
     @StateObject var manager = LocationManager()
+//    var coordinate: CLLocationCoordinate2D
+    @State private var region = MKCoordinateRegion()
     @ObservedObject private var viewModel = LocationDataViewModel()
 
     var body: some View {
         Map(
-                coordinateRegion: $manager.region,
+                coordinateRegion: $region,
                 showsUserLocation: true,
                 userTrackingMode: .constant(.follow),
                 annotationItems: viewModel.locationData.map { data -> MapLocation in
@@ -26,14 +32,21 @@ struct HeatmapView: View {
                     MapPin(coordinate: location.coordinate, tint: .red)
                 }
         )
-                .onAppear {
-                    let currentLocation = $manager.region.wrappedValue
-                    viewModel.findInArea(
-                            geoLocation: GeoLocation(
-                                    latitude: currentLocation.center.latitude,
-                                    longitude: currentLocation.center.longitude
-                            ))
+                .onChange(of: manager) { newRegion in
+                    logger.log(level: .error, "onChange: \(manager.region.center)")
                 }
+                .onAppear {
+                    setRegion(manager.region.center)
+                }
+    }
+
+    private func setRegion(_ coordinate: CLLocationCoordinate2D) {
+        logger.log(level: .error, "setRegion: \(manager.region.center)")
+        viewModel.findInArea(geoLocation: GeoLocation(coordinates: coordinate))
+        region = MKCoordinateRegion(
+                center: coordinate,
+                span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+        )
     }
 }
 

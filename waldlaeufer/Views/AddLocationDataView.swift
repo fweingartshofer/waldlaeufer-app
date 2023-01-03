@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
 
 struct AddLocationDataView: View {
 
@@ -15,7 +16,10 @@ struct AddLocationDataView: View {
     @State private var useCustomLocation = false
     @State private var tags: [String] = []
 
+    @StateObject var manager = LocationManager()
     @Environment(\.dismiss) private var dismiss
+
+    @ObservedObject private var viewModel = LocationDataViewModel()
 
     var body: some View {
         NavigationView {
@@ -32,27 +36,29 @@ struct AddLocationDataView: View {
                 }
                 Spacer()
             }
-            .navigationBarTitle("Add new entry")
-            .navigationBarItems(trailing: Button(action: {
-                saveAndClose()
-            }) {
-                Text("Done").bold()
-            })
+                    .navigationBarTitle("Add new entry")
+                    .navigationBarItems(trailing: Button(action: {
+                        saveAndClose()
+                    }) {
+                        Text("Done").bold()
+                    })
         }
     }
 
     func saveAndClose() {
         let newLocationData = LocationData(
-                timestamp: $timestamp.wrappedValue,
-                subjectiveWellbeing: $wellbeing.wrappedValue,
-                geoLocation: GeoLocation(latitude: 0, longitude: 0),
+                id: nil,
+                timestamp: timestamp,
+                subjectiveWellbeing: wellbeing,
+                geoLocation: useCustomLocation
+                        ? GeoLocation(latitude: 0, longitude: 0)
+                        : GeoLocation(coordinates: manager.region),
                 db: nil,
                 radius: nil,
-                tags: $tags.wrappedValue
+                tags: tags
         )
 
-//        RepositoryFactory.getFirebaseLocationRepository().insert(
-//                locationData: newLocationData)
+        viewModel.insert(locationData: newLocationData)
         dismiss()
     }
 }

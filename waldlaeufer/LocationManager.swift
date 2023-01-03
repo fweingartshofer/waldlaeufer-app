@@ -1,8 +1,11 @@
 import Foundation
+import Logging
 import CoreLocation
 import MapKit
 
 class LocationManager : NSObject, ObservableObject, CLLocationManagerDelegate {
+
+    let logger = Logger(label: "LocationManager")
 
     @Published var region = MKCoordinateRegion()
 
@@ -18,6 +21,7 @@ class LocationManager : NSObject, ObservableObject, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locations.last.map {
+            logger.log(level: .error, "Changes \($0)")
             region = MKCoordinateRegion(
                     center: CLLocationCoordinate2D(
                             latitude: $0.coordinate.latitude,
