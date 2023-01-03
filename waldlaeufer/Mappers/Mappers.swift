@@ -6,7 +6,6 @@ import Foundation
 import FirebaseFirestore
 
 func mapGeoLocationFromDictionary(data: [String: Any]) -> LocationData {
-    print(data)
     let id = data["id"] as! String
     let timestamp = data["timestamp"] as! Timestamp
     let subjectiveWellbeing = data["subjectiveWellbeing"] as! Int

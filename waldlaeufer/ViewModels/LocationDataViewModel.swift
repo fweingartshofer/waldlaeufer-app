@@ -14,23 +14,17 @@ class LocationDataViewModel: ObservableObject {
     @Published var locationData = [LocationData]()
     private let ref = Firestore.firestore().collection("LocationData")
 
-    // depending on zoom level needs to be set over function parameters
-    private let range = 20.0
-
     func findInArea(geoLocation: GeoLocation) {
-        print(geoLocation)
         let center = geoLocation.asCLLocationCoordinate2D()
-        let radiusInM: Double = 50 * 1000
+        let radiusInM: Double = 5 * 1000
         let queryBounds = GFUtils.queryBounds(forLocation: center,
                 withRadius: radiusInM)
         let queries = queryBounds.map { bound -> Query in
-            ref.order(by: "geoLocation")
+            ref.order(by: "geoHash")
                     .start(at: [bound.startValue])
                     .end(at: [bound.endValue])
         }
 
-        var matchingDocs = [QueryDocumentSnapshot]()
-        // Collect all the query results together into a single list
         func getDocumentsCompletion(snapshot: QuerySnapshot?, error: Error?) -> () {
             guard let documents = snapshot?.documents else {
                 print("Unable to fetch snapshot data. \(String(describing: error))")
@@ -38,17 +32,22 @@ class LocationDataViewModel: ObservableObject {
             }
 
             for document in documents {
-                //TODO: Validate with geoPoint
-                let lat = document.data()["latitude"] as? Double ?? 0
-                let lng = document.data()["longitude"] as? Double ?? 0
-                let coordinates = CLLocation(latitude: lat, longitude: lng)
+                let geoPoint = document.data()["geoPoint"] as! GeoPoint
+                let coordinates = CLLocation(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
                 let centerPoint = CLLocation(latitude: center.latitude, longitude: center.longitude)
 
                 // We have to filter out a few false positives due to GeoHash accuracy, but
                 // most will match
                 let distance = GFUtils.distance(from: centerPoint, to: coordinates)
                 if distance <= radiusInM {
-                    matchingDocs.append(document)
+                    var data = document.data()
+                    let index = locationData.firstIndex(where: { $0.id == document.documentID })
+                    if index != nil {
+                        locationData.remove(at: index!)
+                    }
+                    data["id"] = document.documentID
+
+                    locationData.append(mapGeoLocationFromDictionary(data: data))
                 }
             }
         }
@@ -56,12 +55,7 @@ class LocationDataViewModel: ObservableObject {
         // After all callbacks have executed, matchingDocs contains the result. Note that this
         // sample does not demonstrate how to wait on all callbacks to complete.
         for query in queries {
-            query.getDocuments(completion: getDocumentsCompletion)
-        }
-
-        locationData = matchingDocs.map { (queryDocumentSnapshot) -> LocationData in
-            let data = queryDocumentSnapshot.data()
-            return mapGeoLocationFromDictionary(data: data)
+            query.addSnapshotListener(getDocumentsCompletion)
         }
     }
 

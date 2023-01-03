@@ -17,7 +17,7 @@ struct ContentView: View {
                         .ignoresSafeArea(edges: .all)
                 VStack {
                     Spacer()
-                    AddButton()
+                    AddButtonView()
                             .padding()
                 }
             }

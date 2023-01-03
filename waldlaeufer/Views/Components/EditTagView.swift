@@ -11,7 +11,7 @@ import SwiftUIFlowLayout
 
 struct EditTagView: View {
 
-    @State public var tags: [String]
+    @Binding public var tags: [String]
     @State private var currentTag: String = ""
     @FocusState private var isFocused: Bool
 
@@ -44,6 +44,6 @@ struct EditTagView: View {
 
 struct EditTagView_Previews: PreviewProvider {
     static var previews: some View {
-        EditTagView(tags: [])
+        EditTagView(tags: .constant([]))
     }
 }

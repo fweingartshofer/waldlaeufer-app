@@ -3,7 +3,7 @@ import Logging
 import CoreLocation
 import MapKit
 
-class LocationManager : NSObject, ObservableObject, CLLocationManagerDelegate {
+class LocationViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     let logger = Logger(label: "LocationManager")
 
@@ -27,7 +27,7 @@ class LocationManager : NSObject, ObservableObject, CLLocationManagerDelegate {
                             latitude: $0.coordinate.latitude,
                             longitude: $0.coordinate.longitude
                     ),
-                    span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5)
+                    span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
             )
         }
     }

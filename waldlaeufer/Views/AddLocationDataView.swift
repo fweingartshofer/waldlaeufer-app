@@ -16,7 +16,7 @@ struct AddLocationDataView: View {
     @State private var useCustomLocation = false
     @State private var tags: [String] = []
 
-    @StateObject var manager = LocationManager()
+    @StateObject var manager = LocationViewModel()
     @Environment(\.dismiss) private var dismiss
 
     @ObservedObject private var viewModel = LocationDataViewModel()
@@ -32,11 +32,11 @@ struct AddLocationDataView: View {
                     }
                     Toggle("Custom location", isOn: $useCustomLocation)
                     DatePicker("Date & Time", selection: $timestamp)
-                    EditTagView(tags: tags)
+                    EditTagView(tags: $tags)
                 }
                 Spacer()
             }
-                    .navigationBarTitle("Add new entry")
+                    .navigationBarTitle(Text("New location entry"), displayMode: .inline)
                     .navigationBarItems(trailing: Button(action: {
                         saveAndClose()
                     }) {

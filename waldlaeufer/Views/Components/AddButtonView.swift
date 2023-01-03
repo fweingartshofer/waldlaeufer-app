@@ -1,5 +1,5 @@
 //
-//  AddButton.swift
+//  AddButtonView.swift
 //  waldlaeufer
 //
 //  Created by Andreas Wenzelhuemer on 29.12.22.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct AddButton: View {
+struct AddButtonView: View {
     @State private var showingSheet = false
     var body: some View {
         Button {
@@ -27,8 +27,8 @@ struct AddButton: View {
     }
 }
 
-struct AddButton_Previews: PreviewProvider {
+struct AddButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        AddButton()
+        AddButtonView()
     }
 }
