@@ -11,7 +11,7 @@ import SwiftUIFlowLayout
 
 struct EditTagView: View {
 
-    @State private var tags: [String] = []
+    @State public var tags: [String] = []
     @State private var currentTag: String = ""
     @FocusState private var isFocused: Bool
 
@@ -21,27 +21,15 @@ struct EditTagView: View {
                     .onSubmit(appendCurrentTagAndClear)
                     .focused($isFocused)
         }
-        FlowLayout(
-                mode: .scrollable,
-                items: tags,
-                itemSpacing: 4
-        ) { tag in
-            HStack {
+        List {
+            ForEach(tags, id: \.self) { tag in
                 Text(tag)
-                        .font(.system(size: 12))
-                        .foregroundColor(.white)
-                        .padding(.horizontal)
-                Button() {
-                    print("\(tag)")
-                    tags = tags.filter { $0 != tag }
-                } label: {
-                    Image(systemName: "delete.left")
-                }
+                        .foregroundColor(.secondary)
+                        .font(.subheadline)
             }
-                    .background(
-                            RoundedRectangle(cornerRadius: 25, style: .continuous)
-                                    .border(Color.blue)
-                                    .foregroundColor(Color.gray))
+                    .onDelete { indexSet in
+                        tags.remove(atOffsets: indexSet)
+                    }
         }
     }
 

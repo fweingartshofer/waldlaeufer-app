@@ -13,7 +13,7 @@ struct AddLocationDataView: View {
     @State private var wellbeing: SubjectiveWellbeing = .GOOD
     @State private var timestamp = Date.now
     @State private var useCustomLocation = false
-    @State private var tagInput: String = ""
+    @State private var tags: [String] = []
 
     @Environment(\.dismiss) private var dismiss
 
@@ -26,9 +26,9 @@ struct AddLocationDataView: View {
                             Text($0.description).tag($0)
                         }
                     }
-                    EditTagView()
                     Toggle("Custom location", isOn: $useCustomLocation)
                     DatePicker("Date & Time", selection: $timestamp)
+                    EditTagView(tags: tags)
                 }
                 Spacer()
             }
@@ -48,7 +48,7 @@ struct AddLocationDataView: View {
                 geoLocation: GeoLocation(0, 0),
                 db: nil,
                 radius: nil,
-                tags: [$tagInput.wrappedValue]
+                tags: $tags.wrappedValue
         )
 
         RepositoryFactory.getFirebaseLocationRepository().insert(
