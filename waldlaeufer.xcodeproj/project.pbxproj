@@ -22,7 +22,8 @@
 		56AF50455E13CC169DD84C71 /* LocationDataDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF51DE9196091000651FFF /* LocationDataDetailView.swift */; };
 		56AF5275093A044D8185AE8C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF539699D5A812026B98D6 /* ContentView.swift */; };
 		56AF53EA673F99023B95E7CD /* AddButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF56C7378E2057726952D7 /* AddButtonView.swift */; };
-		56AF560748145AAD05B687ED /* LocationManagerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF5826CEB05EE6D9FE0D1E /* LocationManagerViewModel.swift */; };
+		56AF55A071AC6E136B647AD9 /* MicrophoneMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF559886930C9421FF4D21 /* MicrophoneMonitor.swift */; };
+		56AF560748145AAD05B687ED /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF5826CEB05EE6D9FE0D1E /* LocationManager.swift */; };
 		56AF56C793662C0B62CDE1AF /* HeatmapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF56F58DBADDF719BE3D3F /* HeatmapView.swift */; };
 		56AF5ABC738BDC4559D068D3 /* AddLocationDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF5E13653AD33E31807F7C /* AddLocationDataView.swift */; };
 		56AF5C0DC6822AB9DAF6ACA4 /* DetailRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF57CC2B50414C4BDBB647 /* DetailRowView.swift */; };
@@ -43,12 +44,13 @@
 		56AF5043742A36F0859A3C10 /* LocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		56AF51DE9196091000651FFF /* LocationDataDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataDetailView.swift; sourceTree = "<group>"; };
 		56AF539699D5A812026B98D6 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		56AF559886930C9421FF4D21 /* MicrophoneMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MicrophoneMonitor.swift; sourceTree = "<group>"; };
 		56AF55F3530E5FDB2608119C /* EditTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTagView.swift; sourceTree = "<group>"; };
 		56AF56C7378E2057726952D7 /* AddButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddButtonView.swift; sourceTree = "<group>"; };
 		56AF56F58DBADDF719BE3D3F /* HeatmapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatmapView.swift; sourceTree = "<group>"; };
 		56AF5786B819CFE35EE01914 /* SubjectiveWellbeing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectiveWellbeing.swift; sourceTree = "<group>"; };
 		56AF57CC2B50414C4BDBB647 /* DetailRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRowView.swift; sourceTree = "<group>"; };
-		56AF5826CEB05EE6D9FE0D1E /* LocationManagerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerViewModel.swift; sourceTree = "<group>"; };
+		56AF5826CEB05EE6D9FE0D1E /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		56AF5E13653AD33E31807F7C /* AddLocationDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationDataView.swift; sourceTree = "<group>"; };
 		80D9F64C295DFD8F00BB988F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,7 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				53724A10BC603E14CD270E8B /* LocationDataViewModel.swift */,
-				56AF5826CEB05EE6D9FE0D1E /* LocationManagerViewModel.swift */,
+				56AF5826CEB05EE6D9FE0D1E /* LocationManager.swift */,
+				56AF559886930C9421FF4D21 /* MicrophoneMonitor.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -249,7 +252,8 @@
 				56AF5D566439C9D2399EA135 /* EditTagView.swift in Sources */,
 				56AF56C793662C0B62CDE1AF /* HeatmapView.swift in Sources */,
 				56AF5C0DC6822AB9DAF6ACA4 /* DetailRowView.swift in Sources */,
-				56AF560748145AAD05B687ED /* LocationManagerViewModel.swift in Sources */,
+				56AF560748145AAD05B687ED /* LocationManager.swift in Sources */,
+				56AF55A071AC6E136B647AD9 /* MicrophoneMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

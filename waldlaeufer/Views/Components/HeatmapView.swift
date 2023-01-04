@@ -15,7 +15,7 @@ struct HeatmapView: View {
 
     let logger = Logger(label: "HeatmapView")
 
-    @StateObject var manager = LocationViewModel()
+    @StateObject var manager = LocationManager()
     @ObservedObject private var viewModel = LocationDataViewModel()
     @State var selectedLocationData: LocationData? = nil
 

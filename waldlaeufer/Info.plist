@@ -10,9 +10,11 @@
 		<dict/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location is necessary for the the heatmap.</string>
+	<string>Use location for showing the current location on the heatmap.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Location is necessary for the the heatmap.</string>
+	<string>Use location for showing the current location on the heatmap.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Use microphone for detecting db levels.</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>googlechromes</string>
