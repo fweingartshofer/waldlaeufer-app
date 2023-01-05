@@ -13,10 +13,8 @@ struct AddButtonView: View {
     @State private var showingAlert = false
 
     @State private var isRecording = false
-    @State private var timeRemaining = 10
-    @State private var timer: Timer?
 
-    @ObservedObject private var microphoneMonitor = MicrophoneMonitor(numberOfSamples: 20)
+    @ObservedObject private var microphoneMonitor = MicrophoneMonitor(numberOfSamples: SoundRecorderView.numberOfSamples)
 
     var body: some View {
         Button {
@@ -30,48 +28,26 @@ struct AddButtonView: View {
         }
                 .buttonStyle(PlainButtonStyle())
                 .sheet(isPresented: $showingSheet) {
-                    if isRecording {
-                        NavigationView {
-                            VStack {
-                                SoundVisualizerView(mic: microphoneMonitor)
-                                Text("\(timeRemaining) seconds remaining")
-                                Text(String(format: "Max Db: %.2f", microphoneMonitor.decibel))
-                            }.navigationBarTitle(Text("Recording sound"), displayMode: .inline)
+                        if isRecording {
+                            SoundRecorderView(microphoneMonitor: microphoneMonitor, isRecording: $isRecording)
+                                    .presentationDetents([.medium])
+                        } else {
+                            AddLocationDataView(db: microphoneMonitor.decibel)
+                                    .presentationDetents([.large])
                         }
-                                .presentationDetents([.medium])
-                    } else {
-                        AddLocationDataView(db: microphoneMonitor.decibel)
-                                .presentationDetents([.large])
-                    }
                 }
                 .alert(isPresented: $showingAlert) {
                     Alert(
                             title: Text("Do you want to record sound or skip straight to the survey?"),
                             primaryButton: .default(Text("Record sound")) {
-                                startTimer()
+                                isRecording = true
+                                showingSheet.toggle()
                             },
                             secondaryButton: .default(Text("Go to survey")) {
-                                showingSheet = !showingSheet
+                                showingSheet.toggle()
                             }
                     )
                 }
-    }
-
-    func startTimer() {
-        microphoneMonitor.startRecording()
-        isRecording = true
-        showingSheet = true
-        timeRemaining = 10
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-            if timeRemaining > 0 {
-                self.timeRemaining -= 1
-            } else {
-                self.timeRemaining = 0
-                self.isRecording = false
-                timer.invalidate()
-                microphoneMonitor.stopRecording()
-            }
-        }
     }
 }
 
