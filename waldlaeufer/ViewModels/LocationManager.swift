@@ -19,9 +19,13 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         manager.startUpdatingLocation()
     }
 
+    deinit {
+        manager.stopUpdatingLocation()
+    }
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locations.last.map {
-            logger.log(level: .error, "Changes \($0)")
+            logger.log(level: .info, "Changes \($0)")
             region = MKCoordinateRegion(
                     center: CLLocationCoordinate2D(
                             latitude: $0.coordinate.latitude,

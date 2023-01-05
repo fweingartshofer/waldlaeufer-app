@@ -21,6 +21,12 @@ struct AddLocationDataView: View {
 
     @ObservedObject private var viewModel = LocationDataViewModel()
 
+    public var db: Float?
+
+    init(db: Float?) {
+        self.db = db
+    }
+
     var body: some View {
         NavigationView {
             VStack {
@@ -53,7 +59,7 @@ struct AddLocationDataView: View {
                 geoLocation: useCustomLocation
                         ? GeoLocation(latitude: 0, longitude: 0)
                         : GeoLocation(coordinates: manager.region),
-                db: nil,
+                db: db != nil ? round(db! * 1000) / 1000.0 : nil,
                 radius: nil,
                 tags: tags
         )
@@ -65,6 +71,6 @@ struct AddLocationDataView: View {
 
 struct AddLocationDataView_Previews: PreviewProvider {
     static var previews: some View {
-        AddLocationDataView()
+        AddLocationDataView(db: nil)
     }
 }
