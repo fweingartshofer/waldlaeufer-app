@@ -5,7 +5,7 @@
 import Foundation
 import AVFoundation
 
-class MicrophoneMonitor: ObservableObject {
+final class MicrophoneMonitor: ObservableObject {
 
     private var audioRecorder: AVAudioRecorder
     private var timer: Timer?
@@ -59,7 +59,7 @@ class MicrophoneMonitor: ObservableObject {
             let power = self.audioRecorder.averagePower(forChannel: 0)
             self.windowedSamples[self.sampleIndex] = power
             self.sampleIndex = (self.sampleIndex + 1) % self.numberOfSamples
-            self.allSamples.append(self.powerToDecibels(power: self.audioRecorder.averagePower(forChannel: 0)))
+            self.allSamples.append(self.powerToDecibels(power: self.audioRecorder.peakPower(forChannel: 0)))
             self.decibel = self.calculateDecibel()
         })
     }

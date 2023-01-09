@@ -9,7 +9,7 @@ import GeoFire
 import GeoFireUtils
 import CoreLocation
 
-class LocationDataViewModel: ObservableObject {
+final class LocationDataViewModel: ObservableObject {
 
     @Published var locationData = [LocationData]()
     private let ref = Firestore.firestore().collection("LocationData")

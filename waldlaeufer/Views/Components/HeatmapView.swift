@@ -15,15 +15,15 @@ struct HeatmapView: View {
 
     let logger = Logger(label: "HeatmapView")
 
-    @StateObject var manager = LocationManager()
-    @ObservedObject private var viewModel = LocationDataViewModel()
+    @StateObject private var manager = LocationManager()
+    @StateObject private var viewModel = LocationDataViewModel()
     @State var selectedLocationData: LocationData? = nil
 
     var body: some View {
         Map(
                 coordinateRegion: Binding(
                         get: { manager.region }, set: { newValue, _ in
-                    print("\(Date()) assigning new value \(newValue)")
+                    logger.log(level: .info , "\(Date()) assigning new value \(newValue)")
                     manager.region = newValue
                     viewModel.findInArea(geoLocation: GeoLocation(coordinates: newValue))
                 }),

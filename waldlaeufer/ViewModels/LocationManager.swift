@@ -3,7 +3,7 @@ import Logging
 import CoreLocation
 import MapKit
 
-class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     let logger = Logger(label: "LocationManager")
 

@@ -19,7 +19,7 @@ struct AddLocationDataView: View {
     @StateObject var manager = LocationManager()
     @Environment(\.dismiss) private var dismiss
 
-    @ObservedObject private var viewModel = LocationDataViewModel()
+    private var viewModel = LocationDataViewModel()
 
     public var db: Float?
 
