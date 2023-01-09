@@ -28,7 +28,7 @@ struct AddLocationDataView: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 Form {
                     Picker(selection: $wellbeing, label: Text("Subjective Wellbeing")) {
@@ -43,7 +43,12 @@ struct AddLocationDataView: View {
                 Spacer()
             }
                     .navigationBarTitle(Text("New location entry"), displayMode: .inline)
-                    .navigationBarItems(trailing: Button(action: {
+                    .navigationBarItems(
+                            leading: Button(action: {
+                                dismiss()
+                            }) {
+                                Text("Cancel").bold()
+                            }, trailing: Button(action: {
                         saveAndClose()
                     }) {
                         Text("Done").bold()

@@ -11,6 +11,7 @@ import SwiftUI
 struct LocationDataDetailView: View {
 
     @State var locationData: LocationData
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         NavigationView {
@@ -23,10 +24,15 @@ struct LocationDataDetailView: View {
                 }
                 DetailRowView(label: "Wellbeing", content: locationData.subjectiveWellbeing.description)
                 if locationData.db != nil {
-                    DetailRowView(label: "Db", content: locationData.db?.description ?? "")
+                    DetailRowView(label: "Loudness", content: "\(locationData.db!.description) dB")
                 }
             }
                     .navigationBarTitle(Text("Details"), displayMode: .inline)
+                    .navigationBarItems(trailing: Button(action: {
+                        dismiss()
+                    }) {
+                        Text("Close").bold()
+                    })
         }
 
     }
