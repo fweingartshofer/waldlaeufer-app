@@ -5,7 +5,7 @@
 import Foundation
 import AVFoundation
 
-final class MicrophoneMonitor: ObservableObject {
+final class MicrophoneViewModel: ObservableObject {
 
     private var audioRecorder: AVAudioRecorder
     private var timer: Timer?

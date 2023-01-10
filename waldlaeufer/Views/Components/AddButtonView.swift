@@ -14,7 +14,7 @@ struct AddButtonView: View {
 
     @State private var isRecording = false
 
-    @ObservedObject private var microphoneMonitor = MicrophoneMonitor(numberOfSamples: SoundRecorderView.numberOfSamples)
+    @ObservedObject private var microphoneMonitor = MicrophoneViewModel(numberOfSamples: SoundRecorderView.numberOfSamples)
 
     var body: some View {
         Button {

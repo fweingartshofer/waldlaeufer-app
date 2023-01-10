@@ -12,7 +12,7 @@ struct SoundRecorderView: View {
 
     public static let numberOfSamples = 20
 
-    @ObservedObject public var microphoneMonitor: MicrophoneMonitor
+    @ObservedObject public var microphoneMonitor: MicrophoneViewModel
 
     @State private var timeRemaining = 10
     @State private var timer: Timer?
@@ -47,6 +47,7 @@ struct SoundRecorderView: View {
         microphoneMonitor.startRecording()
         isRecording = true
         timeRemaining = 10
+
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
             if timeRemaining > 0 {
                 self.timeRemaining -= 1
@@ -62,7 +63,7 @@ struct SoundRecorderView: View {
 
 struct SoundRecorderView_Previews: PreviewProvider {
     static var previews: some View {
-        SoundRecorderView(microphoneMonitor: MicrophoneMonitor(numberOfSamples: 10)
+        SoundRecorderView(microphoneMonitor: MicrophoneViewModel(numberOfSamples: 10)
                 , isRecording: .constant(true))
     }
 }

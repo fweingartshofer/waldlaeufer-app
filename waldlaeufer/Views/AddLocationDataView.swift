@@ -16,7 +16,7 @@ struct AddLocationDataView: View {
     @State private var useCustomLocation = false
     @State private var tags: [String] = []
 
-    @StateObject var manager = LocationManager()
+    @StateObject var manager = LocationManagerViewModel()
     @Environment(\.dismiss) private var dismiss
 
     private var viewModel = LocationDataViewModel()

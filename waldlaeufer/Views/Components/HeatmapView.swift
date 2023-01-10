@@ -15,18 +15,21 @@ struct HeatmapView: View {
 
     let logger = Logger(label: "HeatmapView")
 
-    @StateObject private var manager = LocationManager()
     @StateObject private var viewModel = LocationDataViewModel()
     @State var selectedLocationData: LocationData? = nil
+    @Binding var region: MKCoordinateRegion
 
     var body: some View {
         Map(
                 coordinateRegion: Binding(
-                        get: { manager.region }, set: { newValue, _ in
-                    logger.log(level: .info , "\(Date()) assigning new value \(newValue)")
-                    manager.region = newValue
-                    viewModel.findInArea(geoLocation: GeoLocation(coordinates: newValue))
-                }),
+                        get: { region },
+                        set: { newValue, _ in
+                            logger.log(level: .info, "\(Date()) assigning new value \(newValue)")
+                            region = newValue
+                            DispatchQueue.global(qos: .background).async {
+                                viewModel.findInArea(geoLocation: GeoLocation(coordinates: newValue))
+                            }
+                        }),
                 showsUserLocation: true,
                 userTrackingMode: .constant(.none),
                 annotationItems: viewModel.locationData) { (location: LocationData) in
@@ -63,6 +66,6 @@ struct HeatmapView: View {
 
 struct HeatmapView_Previews: PreviewProvider {
     static var previews: some View {
-        HeatmapView()
+        HeatmapView(region: .constant(MKCoordinateRegion()))
     }
 }

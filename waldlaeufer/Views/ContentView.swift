@@ -10,10 +10,12 @@ import SwiftUI
 
 struct ContentView: View {
 
+    @StateObject private var manager = LocationManagerViewModel()
+
     var body: some View {
         NavigationView {
             ZStack {
-                HeatmapView()
+                HeatmapView(region: $manager.region)
                         .ignoresSafeArea(edges: .all)
                 VStack {
                     Spacer()

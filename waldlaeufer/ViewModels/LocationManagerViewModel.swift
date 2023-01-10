@@ -3,9 +3,9 @@ import Logging
 import CoreLocation
 import MapKit
 
-final class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+final class LocationManagerViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
 
-    let logger = Logger(label: "LocationManager")
+    let logger = Logger(label: "LocationManagerViewModel")
 
     @Published var region = MKCoordinateRegion()
 
