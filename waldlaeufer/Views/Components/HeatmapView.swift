@@ -26,9 +26,7 @@ struct HeatmapView: View {
                         set: { newValue, _ in
                             logger.log(level: .info, "\(Date()) assigning new value \(newValue)")
                             region = newValue
-                            DispatchQueue.global(qos: .background).async {
-                                viewModel.findInArea(geoLocation: GeoLocation(coordinates: newValue))
-                            }
+                            viewModel.findInArea(geoLocation: GeoLocation(coordinates: newValue))
                         }),
                 showsUserLocation: true,
                 userTrackingMode: .constant(.none),
