@@ -12,25 +12,27 @@ struct SoundRecorderView: View {
 
     public static let numberOfSamples = 20
 
-    @ObservedObject public var microphoneMonitor: MicrophoneViewModel
-
     @State private var timeRemaining = 10
     @State private var timer: Timer?
 
     @Binding public var isRecording: Bool
 
+    @StateObject private var viewModel: SoundRecorderViewModel = SoundRecorderViewModel(numberOfSamples: SoundRecorderView.numberOfSamples)
+
+    @Binding var db: Float
+
     var body: some View {
         NavigationView {
             VStack {
                 Text("\(timeRemaining) seconds remaining")
-                Text(String(format: "Max Db: %.2f", microphoneMonitor.decibel))
+                Text(String(format: "Max Db: %.2f", viewModel.db))
             }
                     .navigationBarTitle(Text("Recording sound"), displayMode: .inline)
         }.onAppear(perform: {
                     startTimer()
                 })
         HStack(spacing: 4) {
-            ForEach(microphoneMonitor.windowedSamples.suffix(SoundRecorderView.numberOfSamples), id: \.self) {
+            ForEach(viewModel.windowedSamples, id: \.self) {
                 (level: Float) in
                 SoundbarView(value: normalizeSoundLevel(level: level), numberOfSamples: SoundRecorderView.numberOfSamples)
             }
@@ -44,18 +46,24 @@ struct SoundRecorderView: View {
     }
 
     func startTimer() {
-        microphoneMonitor.startRecording()
+        viewModel.startRecording()
         isRecording = true
         timeRemaining = 10
 
+        print("start timer")
+
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+            print("timer running \(timeRemaining)")
             if timeRemaining > 0 {
+                print("dB \(viewModel.db)")
                 self.timeRemaining -= 1
             } else {
                 self.timeRemaining = 0
                 timer.invalidate()
-                microphoneMonitor.stopRecording()
+                viewModel.stopRecording()
                 isRecording = false
+                db = viewModel.db
+
             }
         }
     }
@@ -63,7 +71,6 @@ struct SoundRecorderView: View {
 
 struct SoundRecorderView_Previews: PreviewProvider {
     static var previews: some View {
-        SoundRecorderView(microphoneMonitor: MicrophoneViewModel(numberOfSamples: 10)
-                , isRecording: .constant(true))
+        SoundRecorderView(isRecording: .constant(true), db: .constant(0))
     }
 }

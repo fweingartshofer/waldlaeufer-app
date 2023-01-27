@@ -8,6 +8,7 @@
 
 import SwiftUI
 import FirebaseFirestore
+import MapKit
 
 struct AddLocationDataView: View {
 
@@ -16,16 +17,12 @@ struct AddLocationDataView: View {
     @State private var useCustomLocation = false
     @State private var tags: [String] = []
 
-    @StateObject var manager = LocationManagerViewModel()
     @Environment(\.dismiss) private var dismiss
 
-    private var viewModel = LocationDataViewModel()
+    @StateObject var viewModel = AddLocationDataViewModel()
 
-    public var db: Float?
-
-    init(db: Float?) {
-        self.db = db
-    }
+    var currentRegion: MKCoordinateRegion
+    var db: Float?
 
     var body: some View {
         NavigationStack {
@@ -63,7 +60,7 @@ struct AddLocationDataView: View {
                 subjectiveWellbeing: wellbeing,
                 geoLocation: useCustomLocation
                         ? GeoLocation(latitude: 0, longitude: 0)
-                        : GeoLocation(coordinates: manager.region),
+                        : GeoLocation(coordinates: currentRegion),
                 db: db != nil ? round(db! * 1000) / 1000.0 : nil,
                 radius: nil,
                 tags: tags
@@ -76,6 +73,6 @@ struct AddLocationDataView: View {
 
 struct AddLocationDataView_Previews: PreviewProvider {
     static var previews: some View {
-        AddLocationDataView(db: nil)
+        AddLocationDataView(currentRegion: MKCoordinateRegion(), db: nil)
     }
 }

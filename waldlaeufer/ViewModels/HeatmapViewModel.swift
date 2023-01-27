@@ -8,11 +8,30 @@ import FirebaseFirestoreSwift
 import GeoFire
 import GeoFireUtils
 import CoreLocation
+import Logging
 
-final class LocationDataViewModel: ObservableObject {
+final class HeatmapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate  {
 
+    let logger = Logger(label: "LocationDataViewModel")
+
+    @Published var region = MKCoordinateRegion()
     @Published var locationData = [LocationData]()
+
     private let ref = Firestore.firestore().collection("LocationData")
+
+    private let manager = CLLocationManager()
+
+    override init() {
+        super.init()
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestWhenInUseAuthorization()
+        manager.startUpdatingLocation()
+    }
+
+    deinit {
+        manager.stopUpdatingLocation()
+    }
 
     func findInArea(geoLocation: GeoLocation) {
         let center = geoLocation.asCLLocationCoordinate2D()
@@ -32,7 +51,11 @@ final class LocationDataViewModel: ObservableObject {
             }
 
             for document in documents {
-                let geoPoint = document.data()["geoPoint"] as! GeoPoint
+                let geoPoint = document.data()["geoPoint"] as? GeoPoint
+                guard let geoPoint = geoPoint else {
+                    print(document)
+                    continue
+                }
                 let coordinates = CLLocation(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
                 let centerPoint = CLLocation(latitude: center.latitude, longitude: center.longitude)
 
@@ -59,33 +82,16 @@ final class LocationDataViewModel: ObservableObject {
         }
     }
 
-    func insert(locationData: LocationData) {
-        do {
-            try ref.document().setData(from: LocationDataDtoForCreation(ld: locationData))
-        } catch let error {
-            print("Error writing document: \(error)")
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        locations.last.map {
+            logger.log(level: .info, "Changes \($0)")
+            region = MKCoordinateRegion(
+                    center: CLLocationCoordinate2D(
+                            latitude: $0.coordinate.latitude,
+                            longitude: $0.coordinate.longitude
+                    ),
+                    span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+            )
         }
-    }
-}
-
-struct LocationDataDtoForCreation: Encodable {
-    let id: String?
-    let timestamp: Date
-    let subjectiveWellbeing: SubjectiveWellbeing
-    let geoHash: String
-    let geoPoint: GeoPoint
-    let db: Float?
-    let radius: Float?
-    let tags: Array<String>
-
-    public init(ld: LocationData) {
-        id = ld.id
-        timestamp = ld.timestamp
-        subjectiveWellbeing = ld.subjectiveWellbeing
-        geoHash = GFUtils.geoHash(forLocation: ld.geoLocation.asCLLocationCoordinate2D())
-        geoPoint = ld.geoLocation.asGeoPoint()
-        db = ld.db
-        radius = ld.radius
-        tags = ld.tags
     }
 }

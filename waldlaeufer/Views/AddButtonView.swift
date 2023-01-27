@@ -7,14 +7,16 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct AddButtonView: View {
     @State private var showingSheet = false
     @State private var showingAlert = false
 
     @State private var isRecording = false
+    @Binding var currentRegion: MKCoordinateRegion
 
-    @ObservedObject private var microphoneMonitor = MicrophoneViewModel(numberOfSamples: SoundRecorderView.numberOfSamples)
+    @State var db: Float = 0
 
     var body: some View {
         Button {
@@ -29,10 +31,10 @@ struct AddButtonView: View {
                 .buttonStyle(PlainButtonStyle())
                 .sheet(isPresented: $showingSheet) {
                         if isRecording {
-                            SoundRecorderView(microphoneMonitor: microphoneMonitor, isRecording: $isRecording)
+                            SoundRecorderView(isRecording: $isRecording, db: $db)
                                     .presentationDetents([.medium])
                         } else {
-                            AddLocationDataView(db: microphoneMonitor.decibel)
+                            AddLocationDataView(currentRegion: currentRegion, db: db)
                                     .presentationDetents([.large])
                         }
                 }
@@ -53,6 +55,6 @@ struct AddButtonView: View {
 
 struct AddButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        AddButtonView()
+        AddButtonView(currentRegion: .constant(MKCoordinateRegion()))
     }
 }

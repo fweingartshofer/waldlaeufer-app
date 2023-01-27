@@ -5,7 +5,7 @@
 import Foundation
 import AVFoundation
 
-final class MicrophoneViewModel: ObservableObject {
+final class SoundRecorderViewModel: ObservableObject {
 
     private var audioRecorder: AVAudioRecorder
     private var timer: Timer?
@@ -15,7 +15,7 @@ final class MicrophoneViewModel: ObservableObject {
     private let minValue: Float = -160.0
 
     @Published public var windowedSamples: [Float]
-    @Published public var decibel: Float = 0
+    @Published public var db: Float = 0
 
     private var allSamples: [Float] = []
 
@@ -34,7 +34,7 @@ final class MicrophoneViewModel: ObservableObject {
         }
 
         let url = URL(fileURLWithPath: "/dev/null", isDirectory: true)
-        let recorderSettings: [String:Any] = [
+        let recorderSettings: [String: Any] = [
             AVFormatIDKey: NSNumber(value: kAudioFormatAppleLossless),
             AVSampleRateKey: 44100.0,
             AVNumberOfChannelsKey: 1,
@@ -60,7 +60,7 @@ final class MicrophoneViewModel: ObservableObject {
             self.windowedSamples[self.sampleIndex] = power
             self.sampleIndex = (self.sampleIndex + 1) % self.numberOfSamples
             self.allSamples.append(self.powerToDecibels(power: self.audioRecorder.peakPower(forChannel: 0)))
-            self.decibel = self.calculateDecibel()
+            self.db = self.calculateDecibel()
         })
     }
 
@@ -76,8 +76,9 @@ final class MicrophoneViewModel: ObservableObject {
     }
 
     private func powerToDecibels(power: Float) -> Float {
-        let db = pow(10.0, power / 20.0) * 120.0
-        return db > 120 ? 120 : db
+        db = 20 * log10(-20 / power)
+        print(db)
+        return db
     }
 
     deinit {
