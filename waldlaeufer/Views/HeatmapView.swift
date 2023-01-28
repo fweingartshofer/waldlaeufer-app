@@ -17,20 +17,26 @@ struct HeatmapView: View {
 
     @StateObject private var viewModel = HeatmapViewModel()
     @State var selectedLocationData: LocationData? = nil
-    @State var region: MKCoordinateRegion? = nil
-    @State var userTrackingMode: MapUserTrackingMode = .follow
+    @State var userTrackingMode: MapUserTrackingMode = .none
+
+    @State private var timer: Timer?
 
     var body: some View {
         NavigationStack {
             ZStack {
                 Map(
                         coordinateRegion: Binding(
-                                get: { region ?? viewModel.region },
+                                get: { viewModel.region },
                                 set: { newValue, _ in
-                                    logger.log(level: .info, "\(Date()) assigning new value \(newValue)")
-                                    region = newValue
-                                    viewModel.findInArea(geoLocation: GeoLocation(coordinates: newValue))
-                                    // userTrackingMode = .none
+
+                                    viewModel.region = newValue
+                                    timer?.invalidate()
+
+                                    timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (timer) in
+                                        logger.log(level: .info, "\(Date()) assigning new value \(newValue)")
+                                        viewModel.findInArea(geoLocation: GeoLocation(coordinates: newValue))
+                                    })
+
                                 }),
                         showsUserLocation: true,
                         userTrackingMode: $userTrackingMode,
@@ -51,6 +57,20 @@ struct HeatmapView: View {
                         }
                         .ignoresSafeArea(edges: .all)
                 VStack {
+                    HStack {
+                        Spacer()
+                        Button {
+                            viewModel.moveToCurrentLocation()
+                        } label: {
+                            Image(systemName: "scope")
+                                    .frame(width: 50, height: 50)
+                                    .foregroundColor(Color.white)
+                                    .background(Color.gray)
+                                    .clipShape(Circle())
+                        }
+                                .buttonStyle(PlainButtonStyle())
+                                .padding()
+                    }
                     Spacer()
                     AddButtonView(currentRegion: $viewModel.region)
                             .padding()

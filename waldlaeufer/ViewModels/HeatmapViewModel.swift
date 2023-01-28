@@ -9,17 +9,24 @@ import GeoFire
 import GeoFireUtils
 import CoreLocation
 import Logging
+import MapKit
 
 final class HeatmapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate  {
 
     let logger = Logger(label: "LocationDataViewModel")
 
-    @Published var region = MKCoordinateRegion()
+    private var setToCurrentLocation: Bool = true
+
+    @Published var region = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(),
+            span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
     @Published var locationData = [LocationData]()
 
     private let ref = Firestore.firestore().collection("LocationData")
 
     private let manager = CLLocationManager()
+
+    private var lastRegion = MKCoordinateRegion()
 
     override init() {
         super.init()
@@ -82,16 +89,24 @@ final class HeatmapViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
         }
     }
 
+    func moveToCurrentLocation() {
+        region = lastRegion
+    }
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locations.last.map {
-            logger.log(level: .info, "Changes \($0)")
-            region = MKCoordinateRegion(
+            lastRegion = MKCoordinateRegion(
                     center: CLLocationCoordinate2D(
                             latitude: $0.coordinate.latitude,
                             longitude: $0.coordinate.longitude
                     ),
-                    span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+                    span: region.span
             )
+
+            if setToCurrentLocation {
+                setToCurrentLocation = false
+                region = lastRegion
+            }
         }
     }
 }
