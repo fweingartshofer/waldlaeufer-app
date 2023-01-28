@@ -11,11 +11,14 @@ import FirebaseFirestore
 import MapKit
 
 struct AddLocationDataView: View {
+    private let healthService: HealthStoreService = HealthStoreService()
 
     @State private var wellbeing: SubjectiveWellbeing = .GOOD
     @State private var timestamp = Date.now
     @State private var useCustomLocation = false
+    @State private var stressLevel: Double? = nil
     @State private var tags: [Tag] = []
+    @State private var stressLevel: Double? = nil
 
     @Environment(\.dismiss) private var dismiss
 
@@ -26,7 +29,9 @@ struct AddLocationDataView: View {
 
     var body: some View {
         NavigationStack {
-            VStack {
+            VStack(spacing: 0) {
+                MetaInfoView(db: db, stressLevel: $stressLevel)
+                        .frame(height: 180)
                 Form {
                     Picker(selection: $wellbeing, label: Text("Subjective Wellbeing")) {
                         ForEach(SubjectiveWellbeing.allCases, id: \.self) {
@@ -37,8 +42,8 @@ struct AddLocationDataView: View {
                     DatePicker("Date & Time", selection: $timestamp)
                     EditTagView(tags: $tags)
                 }
-                Spacer()
             }
+                    .padding(0)
                     .navigationBarTitle(Text("New location entry"), displayMode: .inline)
                     .navigationBarItems(
                             leading: Button(action: {
@@ -50,6 +55,12 @@ struct AddLocationDataView: View {
                     }) {
                         Text("Done").bold()
                     })
+        }
+        .onAppear {
+            if healthService.hasStress {
+                stressLevel = healthService.averageStressLevel()
+            }
+            self.wellbeing = mapDbAndStressLevelToWellbeing(db: db, stressLevel: stressLevel)
         }
     }
 
@@ -73,6 +84,6 @@ struct AddLocationDataView: View {
 
 struct AddLocationDataView_Previews: PreviewProvider {
     static var previews: some View {
-        AddLocationDataView(currentRegion: MKCoordinateRegion(), db: nil)
+        AddLocationDataView(currentRegion: MKCoordinateRegion(), db: 160)
     }
 }

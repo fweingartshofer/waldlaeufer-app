@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		224567A0295DD0E500983556 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2245679F295DD0E500983556 /* FirebaseFirestoreSwift */; };
+		224C3E7529855121002CE096 /* MetaInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224C3E7429855121002CE096 /* MetaInfoView.swift */; };
+		224C3E7829855DED002CE096 /* WarningLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224C3E7729855DED002CE096 /* WarningLevelView.swift */; };
+		224C3E7A29856BD5002CE096 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224C3E7929856BD5002CE096 /* Utils.swift */; };
 		22CEF895296312C3009AA1FC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2245679D295DD0E500983556 /* FirebaseFirestore */; };
 		22CEF898296313C7009AA1FC /* SwiftUIFlowLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 22CEF897296313C7009AA1FC /* SwiftUIFlowLayout */; };
 		22CEF89B29646E46009AA1FC /* GeoFire in Frameworks */ = {isa = PBXBuildFile; productRef = 22CEF89A29646E46009AA1FC /* GeoFire */; };
@@ -18,6 +21,7 @@
 		53724126042CEB9E8796C2CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53724505F1C17E04E86B6C53 /* Preview Assets.xcassets */; };
 		537241304D335AACA6DBAA57 /* AddLocationDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537240EA9CC5CB00200C055C /* AddLocationDataViewModel.swift */; };
 		5372419021C027CFA3342A05 /* HeatmapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53724A10BC603E14CD270E8B /* HeatmapViewModel.swift */; };
+		537245BF253EB62749F462E9 /* HealthStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537240E8BE9B94A21060E7DF /* HealthStoreService.swift */; };
 		537246ADEF41AFD32A12D62D /* LocationDataForCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53724BDCC5919243C4C71467 /* LocationDataForCreation.swift */; };
 		537249C9DCEF3547C15531BB /* Mappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5372433EF5E18D5D7D9B1546 /* Mappers.swift */; };
 		53724ACEA1B42A9C5CB851A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53724ADC67D61BDC532C99B8 /* Assets.xcassets */; };
@@ -38,7 +42,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2229058629854BE400AA74F5 /* waldlaeufer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = waldlaeufer.entitlements; sourceTree = "<group>"; };
+		224C3E7429855121002CE096 /* MetaInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetaInfoView.swift; sourceTree = "<group>"; };
+		224C3E7729855DED002CE096 /* WarningLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningLevelView.swift; sourceTree = "<group>"; };
+		224C3E7929856BD5002CE096 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		537240766F5C207C9E3A5177 /* HeatmapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatmapView.swift; sourceTree = "<group>"; };
+		537240E8BE9B94A21060E7DF /* HealthStoreService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthStoreService.swift; sourceTree = "<group>"; };
 		537240EA9CC5CB00200C055C /* AddLocationDataViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationDataViewModel.swift; sourceTree = "<group>"; };
 		537241350211CEAB4FE7D6FC /* EditTagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTagView.swift; sourceTree = "<group>"; };
 		537241E5024F2579561EC697 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = file.gitignore; path = .gitignore; sourceTree = "<group>"; };
@@ -82,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		224C3E7629855277002CE096 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				537240E8BE9B94A21060E7DF /* HealthStoreService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		537242DD82127CA61AF1C66D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +122,8 @@
 		5372457C6977D47A5BB9D6A9 /* waldlaeufer */ = {
 			isa = PBXGroup;
 			children = (
+				224C3E7629855277002CE096 /* Services */,
+				2229058629854BE400AA74F5 /* waldlaeufer.entitlements */,
 				80D9F64C295DFD8F00BB988F /* Info.plist */,
 				53724EE8811C11FBDBF03918 /* Preview Content */,
 				537242DD82127CA61AF1C66D /* ViewModels */,
@@ -114,6 +133,7 @@
 				537249A694DF446DC7721BF6 /* Mappers */,
 				53724FD77423A2F4FAFB2BFE /* Resources */,
 				53724964BB091CAD3D6A8FC6 /* App */,
+				224C3E7929856BD5002CE096 /* Utils.swift */,
 			);
 			path = waldlaeufer;
 			sourceTree = "<group>";
@@ -170,6 +190,8 @@
 				537241350211CEAB4FE7D6FC /* EditTagView.swift */,
 				53724A11844688FF11E72D9C /* AddButtonView.swift */,
 				53724A71D5FE66313A12895D /* DetailRowView.swift */,
+				224C3E7429855121002CE096 /* MetaInfoView.swift */,
+				224C3E7729855DED002CE096 /* WarningLevelView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -278,7 +300,11 @@
 				53724103513204CB73329F0F /* DetailRowView.swift in Sources */,
 				537246ADEF41AFD32A12D62D /* LocationDataForCreation.swift in Sources */,
 				537241304D335AACA6DBAA57 /* AddLocationDataViewModel.swift in Sources */,
+				224C3E7A29856BD5002CE096 /* Utils.swift in Sources */,
 				53724E3913DFCC14E9C00383 /* waldlaeuferApp.swift in Sources */,
+				224C3E7829855DED002CE096 /* WarningLevelView.swift in Sources */,
+				537245BF253EB62749F462E9 /* HealthStoreService.swift in Sources */,
+				224C3E7529855121002CE096 /* MetaInfoView.swift in Sources */,
 				56AF5B14EB05DFF8A01BC48B /* EditTagViewModel.swift in Sources */,
 				56AF54B8F02AB37F0D723F4D /* Tag.swift in Sources */,
 				56AF5FD06E3614098743BF83 /* LocationDataDetailViewModel.swift in Sources */,
@@ -354,6 +380,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = waldlaeufer/waldlaeufer.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"waldlaeufer/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
@@ -440,6 +467,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = waldlaeufer/waldlaeufer.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"waldlaeufer/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
