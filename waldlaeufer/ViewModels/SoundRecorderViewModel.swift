@@ -59,7 +59,7 @@ final class SoundRecorderViewModel: ObservableObject {
             let power = self.audioRecorder.averagePower(forChannel: 0)
             self.windowedSamples[self.sampleIndex] = power
             self.sampleIndex = (self.sampleIndex + 1) % self.numberOfSamples
-            self.allSamples.append(self.powerToDecibels(power: self.audioRecorder.peakPower(forChannel: 0)))
+            self.allSamples.append(self.dbfsToDecibel(power: self.audioRecorder.peakPower(forChannel: 0)))
             self.db = self.calculateDecibel()
         })
     }
@@ -75,9 +75,10 @@ final class SoundRecorderViewModel: ObservableObject {
         allSamples.max() ?? 0
     }
 
-    private func powerToDecibels(power: Float) -> Float {
-        db = 20 * log10(-20 / power)
-        print(db)
+    private func dbfsToDecibel(power: Float) -> Float {
+        let referenceValue: Float = 18e-1
+        let minDbfs: Float = -120.0
+        db = ((power + abs(minDbfs)) / referenceValue)
         return db
     }
 
