@@ -8,6 +8,7 @@
 
 import SwiftUI
 import FirebaseFirestore
+import MapKit
 
 struct AddLocationDataView: View {
 
@@ -16,13 +17,15 @@ struct AddLocationDataView: View {
     @State private var useCustomLocation = false
     @State private var tags: [String] = []
 
-    @StateObject var manager = LocationManager()
     @Environment(\.dismiss) private var dismiss
 
-    @ObservedObject private var viewModel = LocationDataViewModel()
+    @StateObject var viewModel = AddLocationDataViewModel()
+
+    var currentRegion: MKCoordinateRegion
+    var db: Float?
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 Form {
                     Picker(selection: $wellbeing, label: Text("Subjective Wellbeing")) {
@@ -37,7 +40,12 @@ struct AddLocationDataView: View {
                 Spacer()
             }
                     .navigationBarTitle(Text("New location entry"), displayMode: .inline)
-                    .navigationBarItems(trailing: Button(action: {
+                    .navigationBarItems(
+                            leading: Button(action: {
+                                dismiss()
+                            }) {
+                                Text("Cancel").bold()
+                            }, trailing: Button(action: {
                         saveAndClose()
                     }) {
                         Text("Done").bold()
@@ -52,8 +60,8 @@ struct AddLocationDataView: View {
                 subjectiveWellbeing: wellbeing,
                 geoLocation: useCustomLocation
                         ? GeoLocation(latitude: 0, longitude: 0)
-                        : GeoLocation(coordinates: manager.region),
-                db: nil,
+                        : GeoLocation(coordinates: currentRegion),
+                db: db != nil ? round(db! * 1000) / 1000.0 : nil,
                 radius: nil,
                 tags: tags
         )
@@ -65,6 +73,6 @@ struct AddLocationDataView: View {
 
 struct AddLocationDataView_Previews: PreviewProvider {
     static var previews: some View {
-        AddLocationDataView()
+        AddLocationDataView(currentRegion: MKCoordinateRegion(), db: nil)
     }
 }

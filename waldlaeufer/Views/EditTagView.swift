@@ -16,11 +16,9 @@ struct EditTagView: View {
     @FocusState private var isFocused: Bool
 
     var body: some View {
-        VStack {
-            TextField("Tags", text: $currentTag)
-                    .onSubmit(appendCurrentTagAndClear)
-                    .focused($isFocused)
-        }
+        TextField("Tags", text: $currentTag)
+                .onSubmit(appendCurrentTagAndClear)
+                .focused($isFocused)
         List {
             ForEach(tags, id: \.self) { tag in
                 Text(tag)
