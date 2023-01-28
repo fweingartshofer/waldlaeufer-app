@@ -12,12 +12,12 @@ import MapKit
 
 struct AddLocationDataView: View {
     private let healthService: HealthStoreService = HealthStoreService()
-    
+
     @State private var wellbeing: SubjectiveWellbeing = .GOOD
     @State private var timestamp = Date.now
     @State private var useCustomLocation = false
-    @State private var tags: [String] = []
     @State private var stressLevel: Double? = nil
+    @State private var tags: [Tag] = []
 
     @Environment(\.dismiss) private var dismiss
 

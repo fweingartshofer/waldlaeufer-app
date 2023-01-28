@@ -11,17 +11,34 @@ import SwiftUIFlowLayout
 
 struct EditTagView: View {
 
-    @Binding public var tags: [String]
-    @State private var currentTag: String = ""
+    @Binding public var tags: [Tag]
+
+    @StateObject var viewModel: EditTagViewModel = EditTagViewModel()
+
     @FocusState private var isFocused: Bool
 
     var body: some View {
-        TextField("Tags", text: $currentTag)
-                .onSubmit(appendCurrentTagAndClear)
+        TextField("Tags", text: $viewModel.currentTagName)
                 .focused($isFocused)
+                .onSubmit(appendAndClear)
+                .onChange(of: viewModel.currentTagName) { value in
+                    viewModel.search(value, tagsToExclude: tags)
+                }
+                .onAppear {
+                    viewModel.start()
+                }
+        List(viewModel.searchResults, id: \.name) { tag in
+            Button(action: {
+                tags.append(tag)
+                viewModel.currentTagName = ""
+            }) {
+                Text(tag.name)
+            }
+        }
+                .offset()
         List {
-            ForEach(tags, id: \.self) { tag in
-                Text(tag)
+            ForEach(tags, id: \.name) { tag in
+                Text(tag.name)
                         .foregroundColor(.secondary)
                         .font(.subheadline)
             }
@@ -31,12 +48,12 @@ struct EditTagView: View {
         }
     }
 
-    func appendCurrentTagAndClear() {
+    func appendAndClear() {
         isFocused = true
-        if (!tags.contains(where: { $0.caseInsensitiveCompare(currentTag) == .orderedSame })) {
-            tags.append(currentTag)
+        if (!tags.contains(where: { $0.name.caseInsensitiveCompare(viewModel.currentTagName) == .orderedSame })) {
+            tags.append(Tag(id: nil, name: viewModel.currentTagName))
         }
-        currentTag = ""
+        viewModel.currentTagName = ""
     }
 }
 
