@@ -44,5 +44,5 @@ struct LocationData: Identifiable, Codable {
     let geoLocation: GeoLocation
     let db: Float?
     let radius: Float?
-    let tags: Array<String>
+    let tags: Array<Tag>
 }

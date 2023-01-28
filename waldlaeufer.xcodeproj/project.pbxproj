@@ -28,10 +28,13 @@
 		53724F3FF3E966D864267F3A /* SoundbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537244102C95045C560B7687 /* SoundbarView.swift */; };
 		53724F429537567924213471 /* HeatmapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537240766F5C207C9E3A5177 /* HeatmapView.swift */; };
 		56AF50455E13CC169DD84C71 /* LocationDataDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF51DE9196091000651FFF /* LocationDataDetailView.swift */; };
+		56AF54B8F02AB37F0D723F4D /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF5438E424A2AB8A1B60CB /* Tag.swift */; };
 		56AF55A071AC6E136B647AD9 /* SoundRecorderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF559886930C9421FF4D21 /* SoundRecorderViewModel.swift */; };
 		56AF5ABC738BDC4559D068D3 /* AddLocationDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF5E13653AD33E31807F7C /* AddLocationDataView.swift */; };
+		56AF5B14EB05DFF8A01BC48B /* EditTagViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF5627A13D0BA44C1BD3C7 /* EditTagViewModel.swift */; };
 		56AF5C1DA0E10321132983B9 /* SubjectiveWellbeing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF5786B819CFE35EE01914 /* SubjectiveWellbeing.swift */; };
 		56AF5EA614766B5BD0F89AD9 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF5043742A36F0859A3C10 /* LocationData.swift */; };
+		56AF5FD06E3614098743BF83 /* LocationDataDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF50D85A277782BD4E8A7E /* LocationDataDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,8 +55,11 @@
 		53724D8D5611B3EBDBB293E0 /* waldlaeufer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = waldlaeufer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53724F9997FFC96CACF2335E /* SoundRecorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundRecorderView.swift; sourceTree = "<group>"; };
 		56AF5043742A36F0859A3C10 /* LocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
+		56AF50D85A277782BD4E8A7E /* LocationDataDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataDetailViewModel.swift; sourceTree = "<group>"; };
 		56AF51DE9196091000651FFF /* LocationDataDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataDetailView.swift; sourceTree = "<group>"; };
+		56AF5438E424A2AB8A1B60CB /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		56AF559886930C9421FF4D21 /* SoundRecorderViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundRecorderViewModel.swift; sourceTree = "<group>"; };
+		56AF5627A13D0BA44C1BD3C7 /* EditTagViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTagViewModel.swift; sourceTree = "<group>"; };
 		56AF5786B819CFE35EE01914 /* SubjectiveWellbeing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectiveWellbeing.swift; sourceTree = "<group>"; };
 		56AF5E13653AD33E31807F7C /* AddLocationDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationDataView.swift; sourceTree = "<group>"; };
 		80D9F64C295DFD8F00BB988F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -82,6 +88,8 @@
 				53724A10BC603E14CD270E8B /* HeatmapViewModel.swift */,
 				56AF559886930C9421FF4D21 /* SoundRecorderViewModel.swift */,
 				537240EA9CC5CB00200C055C /* AddLocationDataViewModel.swift */,
+				56AF5627A13D0BA44C1BD3C7 /* EditTagViewModel.swift */,
+				56AF50D85A277782BD4E8A7E /* LocationDataDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -172,6 +180,7 @@
 				56AF5043742A36F0859A3C10 /* LocationData.swift */,
 				56AF5786B819CFE35EE01914 /* SubjectiveWellbeing.swift */,
 				53724BDCC5919243C4C71467 /* LocationDataForCreation.swift */,
+				56AF5438E424A2AB8A1B60CB /* Tag.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -270,6 +279,9 @@
 				537246ADEF41AFD32A12D62D /* LocationDataForCreation.swift in Sources */,
 				537241304D335AACA6DBAA57 /* AddLocationDataViewModel.swift in Sources */,
 				53724E3913DFCC14E9C00383 /* waldlaeuferApp.swift in Sources */,
+				56AF5B14EB05DFF8A01BC48B /* EditTagViewModel.swift in Sources */,
+				56AF54B8F02AB37F0D723F4D /* Tag.swift in Sources */,
+				56AF5FD06E3614098743BF83 /* LocationDataDetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

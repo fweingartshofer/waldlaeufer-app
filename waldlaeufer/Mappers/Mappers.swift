@@ -12,7 +12,7 @@ func mapGeoLocationFromDictionary(data: [String: Any]) -> LocationData {
     let geoPoint = data["geoPoint"] as! GeoPoint
     let db = data["db"] as? Float
     let radius = data["radius"] as? Float
-    let tags = data["tags"] as! [String]
+    let tagIds = data["tagIds"] as? [String]
 
     return LocationData(
             id: id,
@@ -21,5 +21,6 @@ func mapGeoLocationFromDictionary(data: [String: Any]) -> LocationData {
             geoLocation: GeoLocation(geoPoint: geoPoint),
             db: db,
             radius: radius,
-            tags: tags)
+            tags:  tagIds?.map { Tag(id: $0, name: "") } ?? []
+    )
 }

@@ -7,11 +7,23 @@ import FirebaseFirestore
 
 final class AddLocationDataViewModel: ObservableObject {
 
-    private let ref = Firestore.firestore().collection("LocationData")
-
     func insert(locationData: LocationData) {
         do {
-            try ref.document().setData(from: LocationDataForCreation(ld: locationData))
+
+            let tags = try locationData.tags.map { tag in
+                        if tag.id == nil {
+                            let ref = Firestore.firestore().collection("Tags").document()
+                            let id = ref.documentID
+                            try ref.setData(from: tag)
+                            return Tag(id: id, name: tag.name)
+                        } else {
+                            print(tag)
+                            return tag
+                        }
+                    }
+
+            try Firestore.firestore().collection("LocationData").document()
+                    .setData(from: LocationDataForCreation(ld: locationData, tags: tags))
         } catch let error {
             print("Error writing document: \(error)")
         }

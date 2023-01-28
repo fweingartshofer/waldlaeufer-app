@@ -13,28 +13,36 @@ struct LocationDataDetailView: View {
     @State var locationData: LocationData
     @Environment(\.dismiss) private var dismiss
 
+    @StateObject var viewModel = LocationDataDetailViewModel()
+
     var body: some View {
         NavigationView {
-            List {
-                if locationData.tags.count > 0 {
-                    DetailRowView(label: "Tags", content: locationData.tags.joined(separator: ", "))
+            switch viewModel.state {
+            case .loading:
+                ProgressView()
+            case .finished(let tags):
+                List {
+                    DetailRowView(label: "Tags", content: tags.joined(separator: ", "))
+                    if locationData.radius != nil {
+                        DetailRowView(label: "Radius", content: locationData.radius?.description ?? "")
+                    }
+                    DetailRowView(label: "Wellbeing", content: locationData.subjectiveWellbeing.description)
+                    if locationData.db != nil {
+                        DetailRowView(label: "Loudness", content: "\(locationData.db!.description) dB")
+                    }
                 }
-                if locationData.radius != nil {
-                    DetailRowView(label: "Radius", content: locationData.radius?.description ?? "")
-                }
-                DetailRowView(label: "Wellbeing", content: locationData.subjectiveWellbeing.description)
-                if locationData.db != nil {
-                    DetailRowView(label: "Loudness", content: "\(locationData.db!.description) dB")
-                }
+                        .navigationBarTitle(Text("Details"), displayMode: .inline)
+                        .navigationBarItems(trailing: Button(action: {
+                            dismiss()
+                        }) {
+                            Text("Close").bold()
+                        })
             }
-                    .navigationBarTitle(Text("Details"), displayMode: .inline)
-                    .navigationBarItems(trailing: Button(action: {
-                        dismiss()
-                    }) {
-                        Text("Close").bold()
-                    })
         }
+                .onAppear {
+                    viewModel.start(ld: locationData)
 
+                }
     }
 }
 
