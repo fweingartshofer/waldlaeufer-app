@@ -14,7 +14,16 @@ func mapDbAndStressLevelToWellbeing(db: Float?, stressLevel: Double?) -> Subject
     var normalizedStress: Float = 0
     
     if let db = db {
-        normalizedDb = db / 160
+        normalizedDb = db / 140
+        if db < 50 {
+            normalizedDb = 0
+        } else if db < 60 {
+            normalizedDb = 0.33
+        } else if db < 75 {
+            normalizedDb = 0.66
+        } else {
+            normalizedDb = 0.99
+        }
         dbWeight = 0.5
     }
     if let stressLevel = stressLevel {
@@ -26,7 +35,7 @@ func mapDbAndStressLevelToWellbeing(db: Float?, stressLevel: Double?) -> Subject
     
     let combinedMetric: Float = dbWeight * normalizedDb + stressWeight * normalizedStress
 
-    let binIntervals: [Float] = [0.125, 0.25, 0.5, 0.75, 0.875]
+    let binIntervals: [Float] = [0.125, 0.25, 0.5, 0.75]
     for (index, interval) in binIntervals.enumerated() {
         if combinedMetric <= interval {
             return SubjectiveWellbeing(rawValue: index)!

@@ -55,11 +55,11 @@ struct AddLocationDataView: View {
                         Text("Done").bold()
                     })
         }
-        .onAppear {
+        .task {
             if healthService.hasStress {
                 stressLevel = healthService.averageStressLevel()
             }
-            self.wellbeing = mapDbAndStressLevelToWellbeing(db: db, stressLevel: stressLevel)
+            wellbeing = mapDbAndStressLevelToWellbeing(db: db, stressLevel: stressLevel)
         }
     }
 
