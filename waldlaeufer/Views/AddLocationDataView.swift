@@ -18,7 +18,6 @@ struct AddLocationDataView: View {
     @State private var useCustomLocation = false
     @State private var stressLevel: Double? = nil
     @State private var tags: [Tag] = []
-    @State private var stressLevel: Double? = nil
 
     @Environment(\.dismiss) private var dismiss
 
