@@ -17,7 +17,6 @@ final class AddLocationDataViewModel: ObservableObject {
                             try ref.setData(from: tag)
                             return Tag(id: id, name: tag.name)
                         } else {
-                            print(tag)
                             return tag
                         }
                     }
