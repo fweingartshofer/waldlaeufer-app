@@ -19,6 +19,7 @@ final class HealthStoreService {
     }
 
     func getStressLevelData() -> [Double] {
+        authorize()
         let stressType = HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN)!
         let stressSort = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
         let fiveMinutesAgo = Date(timeIntervalSinceNow: -5 * 60)
@@ -41,6 +42,19 @@ final class HealthStoreService {
     func averageStressLevel() -> Double {
         let data = getStressLevelData()
         return data.reduce(0, +) / Double(data.count)
+    }
+    
+    func authorize() {
+        if let stressLevelType = HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN) {
+            let readDataTypes: Set<HKQuantityType> = [stressLevelType]
+            healthStore.requestAuthorization(toShare: nil, read: readDataTypes) { (success, error) in
+                if let error = error {
+                    print("Error requesting authorization: \(error.localizedDescription)")
+                } else {
+                    print("Successfully requested authorization for stress level data")
+                }
+            }
+        }
     }
 
 }

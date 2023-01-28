@@ -9,6 +9,8 @@
 		<key>UISceneConfigurations</key>
 		<dict/>
 	</dict>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Share your stress level with this App to derive your subjective wellbeing</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Use location for showing the current location on the heatmap.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
