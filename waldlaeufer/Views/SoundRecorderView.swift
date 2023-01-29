@@ -24,8 +24,10 @@ struct SoundRecorderView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("\(timeRemaining) seconds remaining")
-                Text(String(format: "Max Db: %.2f", viewModel.db))
+                Text("\(timeRemaining)s")
+                        .font(.system(size: 36, weight: .bold, design: .monospaced))
+                Text(String(format: "%.2f db", viewModel.db))
+                        .font(.system(size: 20))
             }
                     .navigationBarTitle(Text("Recording sound"), displayMode: .inline)
         }.onAppear(perform: {
@@ -37,7 +39,7 @@ struct SoundRecorderView: View {
                 SoundbarView(value: normalizeSoundLevel(level: level), numberOfSamples: SoundRecorderView.numberOfSamples)
             }
         }
-                .frame(height: 180)
+                .frame(height: 160)
     }
 
     private func normalizeSoundLevel(level: Float) -> CGFloat {

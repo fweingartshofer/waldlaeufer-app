@@ -18,48 +18,83 @@ struct AddLocationDataView: View {
     @State private var useCustomLocation = false
     @State private var stressLevel: Double? = nil
     @State private var tags: [Tag] = []
+    @State private var radius: CustomLocation = CustomLocation(coordinate: CLLocationCoordinate2D())
 
     @Environment(\.dismiss) private var dismiss
 
     @StateObject var viewModel = AddLocationDataViewModel()
 
-    var currentRegion: MKCoordinateRegion
     var db: Float?
+    @State var userLocation: MKCoordinateRegion
 
     var body: some View {
         NavigationStack {
-            VStack(spacing: 0) {
-                MetaInfoView(db: db, stressLevel: $stressLevel)
-                        .frame(height: 180)
-                Form {
-                    Picker(selection: $wellbeing, label: Text("Subjective Wellbeing")) {
-                        ForEach(SubjectiveWellbeing.allCases, id: \.self) {
-                            Text($0.description).tag($0)
+            VStack {
+                switch viewModel.state {
+                case .saving:
+                    ProgressView()
+                case .form:
+                    VStack(spacing: 0) {
+                        MetaInfoView(db: db, stressLevel: $stressLevel)
+                                .frame(height: 180)
+                        Form {
+                            Picker(selection: $wellbeing, label: Text("Subjective Wellbeing")) {
+                                ForEach(SubjectiveWellbeing.allCases, id: \.self) {
+                                    Text($0.description).tag($0)
+                                }
+                            }
+                            Toggle("Custom location", isOn: $useCustomLocation)
+                            DatePicker("Date & Time", selection: $timestamp)
+                            EditTagView(tags: $tags)
                         }
                     }
-                    Toggle("Custom location", isOn: $useCustomLocation)
-                    DatePicker("Date & Time", selection: $timestamp)
-                    EditTagView(tags: $tags)
+                            .padding(0)
+                            .navigationBarTitle(Text("How do you feel?"), displayMode: .inline)
+                            .navigationBarItems(
+                                    leading: Button(action: {
+                                        dismiss()
+                                    }) {
+                                        Text("Cancel").bold()
+                                    }, trailing: Button(action: {
+                                if useCustomLocation {
+                                    viewModel.state = .customMap
+                                } else {
+                                    saveAndClose()
+                                }
+                            }) {
+                                Text(useCustomLocation ? "Continue" : "Done").bold()
+                            })
+                case .customMap:
+                    Map(
+                            coordinateRegion: Binding(
+                                    get: { userLocation },
+                                    set: {
+                                        userLocation = $0
+                                        radius = CustomLocation(coordinate: userLocation.center)
+                                    }
+                            ),
+                            showsUserLocation: true,
+                            userTrackingMode: .none,
+                            annotationItems: [radius]) { (location: CustomLocation) in
+                                MapAnnotation(coordinate: radius.coordinate, content: {
+                                    Circle()
+                                            .fill(Color.blue.opacity(0.2))
+                                            .frame(width: 256, height: 256)
+                                })
+                    }
+                            .navigationBarTitle(Text("Choose custom location"), displayMode: .inline)
+                            .navigationBarItems(
+                                    leading: Button("Cancel", action: { dismiss() }).bold(),
+                                    trailing: Button("Save", action: saveAndClose)
+                            )
                 }
             }
-                    .padding(0)
-                    .navigationBarTitle(Text("New location entry"), displayMode: .inline)
-                    .navigationBarItems(
-                            leading: Button(action: {
-                                dismiss()
-                            }) {
-                                Text("Cancel").bold()
-                            }, trailing: Button(action: {
-                        saveAndClose()
-                    }) {
-                        Text("Done").bold()
-                    })
-        }
-        .task {
-            if healthService.hasStress {
-                stressLevel = healthService.averageStressLevel()
-            }
-            wellbeing = mapDbAndStressLevelToWellbeing(db: db, stressLevel: stressLevel)
+                    .task {
+                        if healthService.hasStress {
+                            stressLevel = healthService.averageStressLevel()
+                        }
+                        wellbeing = mapDbAndStressLevelToWellbeing(db: db, stressLevel: stressLevel)
+                    }
         }
     }
 
@@ -68,21 +103,23 @@ struct AddLocationDataView: View {
                 id: nil,
                 timestamp: timestamp,
                 subjectiveWellbeing: wellbeing,
-                geoLocation: useCustomLocation
-                        ? GeoLocation(latitude: 0, longitude: 0)
-                        : GeoLocation(coordinates: currentRegion),
+                geoLocation: GeoLocation(coordinates: userLocation.center),
                 db: db != nil ? round(db! * 1000) / 1000.0 : nil,
-                radius: nil,
+                radius: Float(userLocation.span.latitudeDelta) / 2.0,
                 tags: tags
         )
-
         viewModel.insert(locationData: newLocationData)
         dismiss()
     }
 }
 
+struct CustomLocation: Identifiable {
+    let id = UUID()
+    let coordinate: CLLocationCoordinate2D
+}
+
 struct AddLocationDataView_Previews: PreviewProvider {
     static var previews: some View {
-        AddLocationDataView(currentRegion: MKCoordinateRegion(), db: 160)
+        AddLocationDataView(db: 160, userLocation: MKCoordinateRegion())
     }
 }

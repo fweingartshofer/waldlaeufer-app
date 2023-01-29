@@ -34,7 +34,7 @@ struct AddButtonView: View {
                             SoundRecorderView(isRecording: $isRecording, db: $db)
                                     .presentationDetents([.medium])
                         } else {
-                            AddLocationDataView(currentRegion: currentRegion, db: db)
+                            AddLocationDataView(db: db, userLocation: currentRegion)
                                     .presentationDetents([.large])
                         }
                 }

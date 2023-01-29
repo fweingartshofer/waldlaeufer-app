@@ -82,13 +82,13 @@ struct HeatmapView: View {
     func getColor(_ locationData: LocationData) -> Color {
         switch (locationData.subjectiveWellbeing) {
         case .REALLY_BAD:
-            return Color.red.opacity(0.7)
+            return Color.red.opacity(0.6)
         case .BAD:
             return Color.orange.opacity(0.6)
         case .GOOD:
-            return Color.green.opacity(0.5)
+            return Color.green.opacity(0.4)
         case .REALLY_GOOD:
-            return Color.green.opacity(0.8)
+            return Color.green.opacity(0.7)
         }
     }
 }

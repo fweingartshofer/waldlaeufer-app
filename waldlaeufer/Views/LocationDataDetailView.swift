@@ -22,13 +22,15 @@ struct LocationDataDetailView: View {
                 ProgressView()
             case .finished(let tags):
                 List {
-                    DetailRowView(label: "Tags", content: tags.joined(separator: ", "))
-                    if locationData.radius != nil {
-                        DetailRowView(label: "Radius", content: locationData.radius?.description ?? "")
+                    if tags.count > 0 {
+                        DetailRowView(label: "Tags", content: tags.joined(separator: ", "))
+                    }
+                    if let radius = locationData.radius {
+                        DetailRowView(label: "Radius", content: radius.description)
                     }
                     DetailRowView(label: "Wellbeing", content: locationData.subjectiveWellbeing.description)
-                    if locationData.db != nil {
-                        DetailRowView(label: "Loudness", content: "\(locationData.db!.description) dB")
+                    if let db = locationData.db {
+                        DetailRowView(label: "Decibel (dB)", content: String(format: "%.2f", db))
                     }
                 }
                         .navigationBarTitle(Text("Details"), displayMode: .inline)
