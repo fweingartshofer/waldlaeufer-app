@@ -19,17 +19,22 @@ class LocationDataDetailViewModel: ObservableObject {
     func start(ld: LocationData) {
         state = .loading
 
-        ref.whereField(FieldPath.documentID(), in: ld.tags.map {$0.id!})
-                .addSnapshotListener { (querySnapshot, error) in
-                    guard let documents = querySnapshot?.documents else {
-                        print("No documents")
-                        return
-                    }
-                    self.state = .finished(tags: documents.map { queryDocumentSnapshot -> String in
-                        let data = queryDocumentSnapshot.data()
-                        print(data)
-                        return data["name"] as? String ?? ""
+        if ld.tags.count == 0 {
+            state = .finished(tags: [])
+        } else {
+            ref.whereField(FieldPath.documentID(), in: ld.tags.map {
+                        $0.id!
                     })
-                }
+                    .addSnapshotListener { (querySnapshot, error) in
+                        guard let documents = querySnapshot?.documents else {
+                            print("No documents")
+                            return
+                        }
+                        self.state = .finished(tags: documents.map { queryDocumentSnapshot -> String in
+                            let data = queryDocumentSnapshot.data()
+                            return data["name"] as? String ?? ""
+                        })
+                    }
+        }
     }
 }

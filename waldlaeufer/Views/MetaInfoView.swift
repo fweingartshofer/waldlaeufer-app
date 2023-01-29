@@ -17,7 +17,7 @@ struct MetaInfoView: View {
             NavigationView {
                 List {
                     if let db = db {
-                        DetailRowView(label: "Dezibel", content: "\(db)")
+                        DetailRowView(label: "Decibel (dB)", content: String(format: "%.2f", db))
                     }
                     
                     if let stressLevel = stressLevel {
