@@ -29,7 +29,9 @@ final class AddLocationDataViewModel: ObservableObject {
         do {
             state = .saving
             let tags = try tagService.insertTags(tags: locationData.tags)
-            try locationDataService.insert(data: LocationData(locationData: locationData, newTags: tags))
+            var locationDataToInsert = locationData
+            locationDataToInsert.tags = tags
+            try locationDataService.insert(data: locationDataToInsert)
         } catch let error {
             print("Error writing document: \(error)")
         }

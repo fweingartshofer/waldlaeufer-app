@@ -25,6 +25,7 @@
 		537245BF253EB62749F462E9 /* HealthStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537240E8BE9B94A21060E7DF /* HealthStoreService.swift */; };
 		537246ADEF41AFD32A12D62D /* LocationDataForCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53724BDCC5919243C4C71467 /* LocationDataForCreation.swift */; };
 		537249C9DCEF3547C15531BB /* Mappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5372433EF5E18D5D7D9B1546 /* Mappers.swift */; };
+		53724A3827A101246F5D48B0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53724709686B3B42C0212361 /* Extensions.swift */; };
 		53724ACEA1B42A9C5CB851A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53724ADC67D61BDC532C99B8 /* Assets.xcassets */; };
 		53724BBAEE206B1304033FDB /* SoundRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53724F9997FFC96CACF2335E /* SoundRecorderView.swift */; };
 		53724D6F484D8AC1C3549BC1 /* AddButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53724A11844688FF11E72D9C /* AddButtonView.swift */; };
@@ -55,6 +56,7 @@
 		5372433EF5E18D5D7D9B1546 /* Mappers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mappers.swift; sourceTree = "<group>"; };
 		537244102C95045C560B7687 /* SoundbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundbarView.swift; sourceTree = "<group>"; };
 		53724505F1C17E04E86B6C53 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		53724709686B3B42C0212361 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5372475A04EF129A1D6AFA85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.info; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5372478F2E1B4F09ECB5FEF6 /* waldlaeuferApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = waldlaeuferApp.swift; sourceTree = "<group>"; };
 		53724A10BC603E14CD270E8B /* HeatmapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatmapViewModel.swift; sourceTree = "<group>"; };
@@ -125,6 +127,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		5372456101A5CB5C16E51898 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				53724709686B3B42C0212361 /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		5372457C6977D47A5BB9D6A9 /* waldlaeufer */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +149,7 @@
 				537249A694DF446DC7721BF6 /* Mappers */,
 				53724FD77423A2F4FAFB2BFE /* Resources */,
 				53724964BB091CAD3D6A8FC6 /* App */,
+				5372456101A5CB5C16E51898 /* Utils */,
 			);
 			path = waldlaeufer;
 			sourceTree = "<group>";
@@ -316,6 +327,7 @@
 				56AF50AC8A938FA9562196EF /* SoundbarItem.swift in Sources */,
 				537245578E95F75C4A97BB63 /* TagService.swift in Sources */,
 				5372423C4C40D95B09F83C42 /* LocationDataService.swift in Sources */,
+				53724A3827A101246F5D48B0 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

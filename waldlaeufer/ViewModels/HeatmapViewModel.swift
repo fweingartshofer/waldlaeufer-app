@@ -78,7 +78,7 @@ final class HeatmapViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
 
         // After all callbacks have executed, matchingDocs contains the result. Note that this
         // sample does not demonstrate how to wait on all callbacks to complete.
-        for query in locationDataService.findByGeoLocation(geoLocation: geoLocation) {
+        for query in locationDataService.findByGeoLocation(geoLocation: geoLocation, radiusInM: radiusInM) {
             query.addSnapshotListener(getDocumentsCompletion)
         }
     }

@@ -15,9 +15,8 @@ class LocationDataService {
                 .setData(from: LocationDataForCreation(ld: data))
     }
 
-    public func findByGeoLocation(geoLocation: GeoLocation, center: CLLocationCoordinate2D) -> [Query] {
+    public func findByGeoLocation(geoLocation: GeoLocation, radiusInM: Double) -> [Query] {
         let center = geoLocation.asCLLocationCoordinate2D()
-        let radiusInM: Double = 5 * 1000
         let queryBounds = GFUtils.queryBounds(forLocation: center,
                 withRadius: radiusInM)
 

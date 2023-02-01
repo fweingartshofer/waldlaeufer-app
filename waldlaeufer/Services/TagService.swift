@@ -8,11 +8,11 @@ import FirebaseFirestore
 class TagService {
     private let ref = Firestore.firestore().collection("Tags")
 
-    public func getTagsByIds(ids: [String]) -> Query {
+    public func findByIds(ids: [String]) -> Query {
         ref.whereField(FieldPath.documentID(), in: ids)
     }
 
-    public func getTags() -> CollectionReference {
+    public func find() -> CollectionReference {
         ref
     }
 

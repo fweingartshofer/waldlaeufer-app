@@ -15,7 +15,7 @@ class EditTagViewModel: ObservableObject {
     private let tagService = TagService()
 
     func start() {
-        tagService.getTags().addSnapshotListener { (querySnapshot, error) in
+        tagService.find().addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
                 return

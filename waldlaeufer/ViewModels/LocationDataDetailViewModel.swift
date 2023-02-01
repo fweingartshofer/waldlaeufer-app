@@ -22,7 +22,7 @@ class LocationDataDetailViewModel: ObservableObject {
         if ld.tags.count == 0 {
             state = .finished(tags: [])
         } else {
-            tagService.getTagsByIds(ids: ld.tags.map {
+            tagService.findByIds(ids: ld.tags.map {
                 $0.id!
             })
                     .addSnapshotListener { (querySnapshot, error) in

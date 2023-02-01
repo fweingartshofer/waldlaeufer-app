@@ -24,6 +24,7 @@ struct AddLocationDataView: View {
 
     var db: Float?
     @State var userLocation: MKCoordinateRegion
+    @State var customLocation: MKCoordinateRegion?
 
     var body: some View {
         NavigationStack {
@@ -65,24 +66,30 @@ struct AddLocationDataView: View {
                 case .customMap:
                     Map(
                             coordinateRegion: Binding(
-                                    get: { userLocation },
+                                    get: { customLocation ?? userLocation },
                                     set: {
-                                        userLocation = $0
-                                        radius = CustomLocation(coordinate: userLocation.center)
+                                        customLocation = $0
+                                        radius = CustomLocation(coordinate: customLocation!.center)
                                     }
                             ),
                             showsUserLocation: true,
                             userTrackingMode: .none,
                             annotationItems: [radius]) { (location: CustomLocation) in
-                                MapAnnotation(coordinate: radius.coordinate, content: {
-                                    Circle()
-                                            .fill(Color.blue.opacity(0.2))
-                                            .frame(width: 256, height: 256)
-                                })
+                        MapAnnotation(coordinate: radius.coordinate, content: {
+                            ZStack {
+                                Circle()
+                                        .fill(Color.gray.opacity(0.8))
+                                        .frame(width: 8, height: 8)
+                                Circle()
+                                        .fill(Color.blue.opacity(0.2))
+                                        .frame(width: 256, height: 256)
+                            }
+
+                        })
                     }
                             .navigationBarTitle(Text("Choose custom location"), displayMode: .inline)
                             .navigationBarItems(
-                                    leading: Button("Cancel", action: { dismiss() }).bold(),
+                                    leading: Button("Cancel", action: { viewModel.state = .form }).bold(),
                                     trailing: Button("Save", action: saveAndClose)
                             )
                 }
@@ -99,8 +106,10 @@ struct AddLocationDataView: View {
                 id: nil,
                 timestamp: timestamp,
                 subjectiveWellbeing: wellbeing,
-                geoLocation: GeoLocation(coordinates: userLocation.center),
-                db: db != nil ? round(db! * 1000) / 1000.0 : nil,
+                geoLocation: GeoLocation(coordinates: useCustomLocation && customLocation != nil
+                        ? customLocation!.center
+                        : userLocation.center),
+                db: db?.round(places: 3),
                 radius: nil,
                 tags: tags
         )
