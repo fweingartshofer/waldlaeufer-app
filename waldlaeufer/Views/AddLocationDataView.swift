@@ -11,8 +11,6 @@ import FirebaseFirestore
 import MapKit
 
 struct AddLocationDataView: View {
-    private let healthService: HealthStoreService = HealthStoreService()
-
     @State private var wellbeing: SubjectiveWellbeing = .GOOD
     @State private var timestamp = Date.now
     @State private var useCustomLocation = false
@@ -90,9 +88,7 @@ struct AddLocationDataView: View {
                 }
             }
                     .task {
-                        if healthService.hasStress {
-                            stressLevel = healthService.averageStressLevel()
-                        }
+                        stressLevel = viewModel.getStressLevel()
                         wellbeing = mapDbAndStressLevelToWellbeing(db: db, stressLevel: stressLevel)
                     }
         }
@@ -105,7 +101,7 @@ struct AddLocationDataView: View {
                 subjectiveWellbeing: wellbeing,
                 geoLocation: GeoLocation(coordinates: userLocation.center),
                 db: db != nil ? round(db! * 1000) / 1000.0 : nil,
-                radius: Float(userLocation.span.latitudeDelta) / 2.0,
+                radius: nil,
                 tags: tags
         )
         viewModel.insert(locationData: newLocationData)

@@ -7,6 +7,8 @@ import FirebaseFirestore
 
 final class AddLocationDataViewModel: ObservableObject {
 
+    private let healthService: HealthStoreService = HealthStoreService()
+
     @Published var state: State = .form
 
     enum State {
@@ -26,6 +28,12 @@ final class AddLocationDataViewModel: ObservableObject {
                 return tag
             }
         }
+    }
+
+    func getStressLevel() -> Double? {
+            healthService.hasStress
+                    ? healthService.averageStressLevel()
+                    : nil
     }
 
     func insert(locationData: LocationData) {
