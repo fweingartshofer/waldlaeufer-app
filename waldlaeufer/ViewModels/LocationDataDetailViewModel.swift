@@ -7,7 +7,7 @@ import FirebaseFirestore
 
 class LocationDataDetailViewModel: ObservableObject {
 
-    private let ref = Firestore.firestore().collection("Tags")
+    private let tagService: TagService = TagService()
 
     @Published var state: State = .loading
 
@@ -22,9 +22,9 @@ class LocationDataDetailViewModel: ObservableObject {
         if ld.tags.count == 0 {
             state = .finished(tags: [])
         } else {
-            ref.whereField(FieldPath.documentID(), in: ld.tags.map {
-                        $0.id!
-                    })
+            tagService.getTagsByIds(ids: ld.tags.map {
+                $0.id!
+            })
                     .addSnapshotListener { (querySnapshot, error) in
                         guard let documents = querySnapshot?.documents else {
                             print("No documents")

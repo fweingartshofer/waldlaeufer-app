@@ -45,4 +45,26 @@ struct LocationData: Identifiable, Codable {
     let db: Float?
     let radius: Float?
     let tags: Array<Tag>
+
+    init(id: String?, timestamp: Date, subjectiveWellbeing: SubjectiveWellbeing, geoLocation: GeoLocation, db: Float?, radius: Float?, tags: Array<Tag>) {
+        self.id = id
+        self.timestamp = timestamp
+        self.subjectiveWellbeing = subjectiveWellbeing
+        self.geoLocation = geoLocation
+        self.db = db
+        self.radius = radius
+        self.tags = tags
+    }
+
+    init(locationData: LocationData, newTags: Array<Tag>) {
+        self.init(
+                id: locationData.id,
+                timestamp: locationData.timestamp,
+                subjectiveWellbeing: locationData.subjectiveWellbeing,
+                geoLocation: locationData.geoLocation,
+                db: locationData.db,
+                radius: locationData.radius,
+                tags: locationData.tags
+        )
+    }
 }

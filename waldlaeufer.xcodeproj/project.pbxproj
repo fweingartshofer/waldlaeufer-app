@@ -20,6 +20,8 @@
 		53724126042CEB9E8796C2CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53724505F1C17E04E86B6C53 /* Preview Assets.xcassets */; };
 		537241304D335AACA6DBAA57 /* AddLocationDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537240EA9CC5CB00200C055C /* AddLocationDataViewModel.swift */; };
 		5372419021C027CFA3342A05 /* HeatmapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53724A10BC603E14CD270E8B /* HeatmapViewModel.swift */; };
+		5372423C4C40D95B09F83C42 /* LocationDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53724C884BB4B55FE367DB2F /* LocationDataService.swift */; };
+		537245578E95F75C4A97BB63 /* TagService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53724AC70F814D06A3C8BB5E /* TagService.swift */; };
 		537245BF253EB62749F462E9 /* HealthStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537240E8BE9B94A21060E7DF /* HealthStoreService.swift */; };
 		537246ADEF41AFD32A12D62D /* LocationDataForCreation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53724BDCC5919243C4C71467 /* LocationDataForCreation.swift */; };
 		537249C9DCEF3547C15531BB /* Mappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5372433EF5E18D5D7D9B1546 /* Mappers.swift */; };
@@ -58,8 +60,10 @@
 		53724A10BC603E14CD270E8B /* HeatmapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeatmapViewModel.swift; sourceTree = "<group>"; };
 		53724A11844688FF11E72D9C /* AddButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddButtonView.swift; sourceTree = "<group>"; };
 		53724A71D5FE66313A12895D /* DetailRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailRowView.swift; sourceTree = "<group>"; };
+		53724AC70F814D06A3C8BB5E /* TagService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagService.swift; sourceTree = "<group>"; };
 		53724ADC67D61BDC532C99B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		53724BDCC5919243C4C71467 /* LocationDataForCreation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataForCreation.swift; sourceTree = "<group>"; };
+		53724C884BB4B55FE367DB2F /* LocationDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDataService.swift; sourceTree = "<group>"; };
 		53724D8D5611B3EBDBB293E0 /* waldlaeufer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = waldlaeufer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53724F9997FFC96CACF2335E /* SoundRecorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundRecorderView.swift; sourceTree = "<group>"; };
 		56AF5043742A36F0859A3C10 /* LocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
@@ -95,6 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				537240E8BE9B94A21060E7DF /* HealthStoreService.swift */,
+				53724AC70F814D06A3C8BB5E /* TagService.swift */,
+				53724C884BB4B55FE367DB2F /* LocationDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -308,6 +314,8 @@
 				56AF54B8F02AB37F0D723F4D /* Tag.swift in Sources */,
 				56AF5FD06E3614098743BF83 /* LocationDataDetailViewModel.swift in Sources */,
 				56AF50AC8A938FA9562196EF /* SoundbarItem.swift in Sources */,
+				537245578E95F75C4A97BB63 /* TagService.swift in Sources */,
+				5372423C4C40D95B09F83C42 /* LocationDataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,11 +395,14 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = waldlaeufer/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need access to your location to provide you with information in your current location.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to your location to provide you with information in your current location.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Waldläufer";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Share your stress level with this App to derive your subjective wellbeing";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Use location for showing the current location on the heatmap.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Use location for showing the current location on the heatmap.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Use microphone for detecting db levels.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -401,9 +412,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = at.fhooe.waldlaeufer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -474,11 +488,14 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = waldlaeufer/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need access to your location to provide you with information in your current location.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need access to your location to provide you with information in your current location.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Waldläufer";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Share your stress level with this App to derive your subjective wellbeing";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Use location for showing the current location on the heatmap.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Use location for showing the current location on the heatmap.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Use microphone for detecting db levels.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -488,9 +505,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = at.fhooe.waldlaeufer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};

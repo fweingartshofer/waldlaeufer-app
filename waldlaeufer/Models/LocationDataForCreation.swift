@@ -16,7 +16,7 @@ struct LocationDataForCreation: Encodable {
     let radius: Float?
     let tagIds: Array<String>
 
-    public init(ld: LocationData, tags: [Tag]) {
+    public init(ld: LocationData) {
         id = ld.id
         timestamp = ld.timestamp
         subjectiveWellbeing = ld.subjectiveWellbeing
@@ -24,6 +24,6 @@ struct LocationDataForCreation: Encodable {
         geoPoint = ld.geoLocation.asGeoPoint()
         db = ld.db
         radius = ld.radius
-        tagIds = tags.map { $0.id! }
+        tagIds = ld.tags.map { $0.id! }
     }
 }

@@ -7,15 +7,15 @@ import FirebaseFirestore
 
 class EditTagViewModel: ObservableObject {
 
-    private let ref = Firestore.firestore().collection("Tags")
-
     var allSearchResults: [Tag] = []
 
     @Published var currentTagName: String = ""
     @Published var searchResults: [Tag] = []
 
+    private let tagService = TagService()
+
     func start() {
-        ref.addSnapshotListener { (querySnapshot, error) in
+        tagService.getTags().addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
                 return

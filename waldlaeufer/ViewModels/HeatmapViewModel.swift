@@ -22,11 +22,11 @@ final class HeatmapViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
             span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
     @Published var locationData = [LocationData]()
 
-    private let ref = Firestore.firestore().collection("LocationData")
-
     private let manager = CLLocationManager()
 
     private var lastRegion = MKCoordinateRegion()
+
+    private let locationDataService = LocationDataService()
 
     override init() {
         super.init()
@@ -41,15 +41,9 @@ final class HeatmapViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
     }
 
     func findInArea(geoLocation: GeoLocation) {
+
         let center = geoLocation.asCLLocationCoordinate2D()
         let radiusInM: Double = 5 * 1000
-        let queryBounds = GFUtils.queryBounds(forLocation: center,
-                withRadius: radiusInM)
-        let queries = queryBounds.map { bound -> Query in
-            ref.order(by: "geoHash")
-                    .start(at: [bound.startValue])
-                    .end(at: [bound.endValue])
-        }
 
         func getDocumentsCompletion(snapshot: QuerySnapshot?, error: Error?) -> () {
             guard let documents = snapshot?.documents else {
@@ -64,7 +58,7 @@ final class HeatmapViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
                     continue
                 }
                 let coordinates = CLLocation(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
-                let centerPoint = CLLocation(latitude: center.latitude, longitude: center.longitude)
+                let centerPoint = CLLocation(latitude: geoPoint.latitude, longitude: center.longitude)
 
                 // We have to filter out a few false positives due to GeoHash accuracy, but
                 // most will match
@@ -84,7 +78,7 @@ final class HeatmapViewModel: NSObject, ObservableObject, CLLocationManagerDeleg
 
         // After all callbacks have executed, matchingDocs contains the result. Note that this
         // sample does not demonstrate how to wait on all callbacks to complete.
-        for query in queries {
+        for query in locationDataService.findByGeoLocation(geoLocation: geoLocation) {
             query.addSnapshotListener(getDocumentsCompletion)
         }
     }
