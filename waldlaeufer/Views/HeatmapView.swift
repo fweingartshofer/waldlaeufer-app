@@ -33,7 +33,6 @@ struct HeatmapView: View {
                                     timer?.invalidate()
 
                                     timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { (timer) in
-                                        logger.log(level: .info, "\(Date()) assigning new value \(newValue)")
                                         viewModel.findInArea(geoLocation: GeoLocation(coordinates: newValue))
                                     })
 
