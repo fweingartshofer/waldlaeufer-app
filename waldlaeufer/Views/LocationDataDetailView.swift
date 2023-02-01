@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct LocationDataDetailView: View {
 
@@ -34,11 +35,20 @@ struct LocationDataDetailView: View {
                     }
                 }
                         .navigationBarTitle(Text("Details"), displayMode: .inline)
-                        .navigationBarItems(trailing: Button(action: {
-                            dismiss()
-                        }) {
-                            Text("Close").bold()
-                        })
+                        .navigationBarItems(
+                                leading: Button(action: {
+                                    let placemark = MKPlacemark(coordinate: locationData.geoLocation.asCLLocationCoordinate2D())
+                                    let mapItem = MKMapItem(placemark: placemark)
+                                    mapItem.name = "Custom Location"
+                                    mapItem.openInMaps()
+                                }) {
+                                    Image(systemName: "map")
+                                },
+                                trailing: Button(action: {
+                                    dismiss()
+                                }) {
+                                    Text("Close").bold()
+                                })
             }
         }
                 .onAppear {
