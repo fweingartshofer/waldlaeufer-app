@@ -17,7 +17,8 @@ struct SoundRecorderView: View {
 
     @Binding public var isRecording: Bool
 
-    @StateObject private var viewModel: SoundRecorderViewModel = SoundRecorderViewModel(numberOfSamples: SoundRecorderView.numberOfSamples)
+    @StateObject private var viewModel: SoundRecorderViewModel
+            = SoundRecorderViewModel(numberOfSamples: SoundRecorderView.numberOfSamples)
 
     @Binding var db: Float
 
@@ -30,34 +31,27 @@ struct SoundRecorderView: View {
                         .font(.system(size: 20))
             }
                     .navigationBarTitle(Text("Recording sound"), displayMode: .inline)
-        }.onAppear(perform: {
+        }
+                .onAppear(perform: {
                     startTimer()
                 })
         HStack(spacing: 4) {
-            ForEach(viewModel.windowedSamples, id: \.self) {
-                (level: Float) in
-                SoundbarView(value: normalizeSoundLevel(level: level), numberOfSamples: SoundRecorderView.numberOfSamples)
+            ForEach(viewModel.windowedSamples.map {
+                SoundbarItem(value: $0)
+            }) {
+                (item: SoundbarItem) in
+                SoundbarView(item: item, numberOfSamples: SoundRecorderView.numberOfSamples)
             }
         }
                 .frame(height: 160)
-    }
-
-    private func normalizeSoundLevel(level: Float) -> CGFloat {
-        let level = max(0.2, CGFloat(level) + 50) / 2 // between 0.1 and 25
-        return CGFloat(level * (200 / 25)) // scaled to max at 200 (our height of our bar)
     }
 
     func startTimer() {
         viewModel.startRecording()
         isRecording = true
         timeRemaining = 10
-
-        print("start timer")
-
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-            print("timer running \(timeRemaining)")
             if timeRemaining > 0 {
-                print("dB \(viewModel.db)")
                 self.timeRemaining -= 1
             } else {
                 self.timeRemaining = 0
