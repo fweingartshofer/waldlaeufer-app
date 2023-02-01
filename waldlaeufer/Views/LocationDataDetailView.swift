@@ -17,7 +17,7 @@ struct LocationDataDetailView: View {
     @StateObject var viewModel = LocationDataDetailViewModel()
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             switch viewModel.state {
             case .loading:
                 ProgressView()

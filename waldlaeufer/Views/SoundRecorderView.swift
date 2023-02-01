@@ -23,7 +23,7 @@ struct SoundRecorderView: View {
     @Binding var db: Float
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 Text("\(timeRemaining)s")
                         .font(.system(size: 36, weight: .bold, design: .monospaced))

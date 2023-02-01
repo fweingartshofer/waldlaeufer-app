@@ -14,7 +14,7 @@ struct MetaInfoView: View {
     
     var body: some View {
         if containsAnyData() {
-            NavigationView {
+            NavigationStack {
                 List {
                     if let db = db {
                         DetailRowView(label: "Decibel (dB)", content: String(format: "%.2f", db))
